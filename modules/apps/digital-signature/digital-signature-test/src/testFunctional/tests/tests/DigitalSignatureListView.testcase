@@ -171,16 +171,6 @@ definition {
 			recipientEmail = "test@liferay.com",
 			recipientFullName = "Recipient Full Name");
 
-		Click(locator1 = "DigitalSignatureListView#DIGITAL_SIGNATURE_ADD_RECIPIENT");
-
-		Type(
-			locator1 = "DigitalSignatureListView#DIGITAL_SIGNATURE_EXTRA_RECIPIENT_NAME",
-			value1 = "Recipient Full Name 2");
-
-		Type(
-			locator1 = "DigitalSignatureListView#DIGITAL_SIGNATURE_EXTRA_RECIPIENT_EMAIL",
-			value1 = "test2@liferay.com");
-
 		Button.click(button = "Send");
 
 		Alert.viewSuccessMessageText(successMessage = "Your envelope was created successfully.");
