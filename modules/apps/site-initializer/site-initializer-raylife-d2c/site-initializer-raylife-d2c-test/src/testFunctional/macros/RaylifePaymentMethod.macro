@@ -22,8 +22,8 @@ definition {
 			locator1 = "CommerceEntry#PAYMENT_METHODS_SIDE_PANEL_NAV_ITEMS",
 			navItem = "Configuration");
 
-		var raylifePaypalClientId = PropsUtil.get("raylife.paypal.client.id");
-		var raylifePaypalClientSecret = PropsUtil.get("raylife.paypal.client.secret");
+		var raylifePaypalClientId = PropsUtil.get("site.initializer.raylife.d2c.paypal.client.id");
+		var raylifePaypalClientSecret = PropsUtil.get("site.initializer.raylife.d2c.paypal.client.secret");
 
 		Type(
 			key_text = "Client ID",
@@ -138,8 +138,8 @@ definition {
 	}
 
 	macro paypalPaymentFlow {
-		var raylifePaypalEmail = PropsUtil.get("raylife.paypal.email");
-		var raylifePaypalPassword = PropsUtil.get("raylife.paypal.password");
+		var raylifePaypalEmail = PropsUtil.get("site.initializer.raylife.d2c.paypal.email");
+		var raylifePaypalPassword = PropsUtil.get("site.initializer.raylife.d2c.paypal.password");
 
 		Type(
 			locator1 = "RaylifePaymentMethod#FIELD_EMAIL_PAYPAL",
