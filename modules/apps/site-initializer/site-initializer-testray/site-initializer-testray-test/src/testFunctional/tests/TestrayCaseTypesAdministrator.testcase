@@ -30,7 +30,25 @@ definition {
 	@priority = "5"
 	test AdminCanAddCaseTypes {
 
-		// TODO LPS-156676 AdminCanAddCaseTypes pending implementation
+		task ("Go to Testray") {
+			ApplicationsMenu.gotoSite(site = "Testray 2");
+		}
+
+		task ("Go to Case Types on Manage Sidebar") {
+			TestrayLayout.clickManageOnSidebar();
+
+			TestrayManage.selectOptionsManage(itemvalue = "Case Types");
+		}
+
+		task ("Change Items Per Page to 150 Items") {
+			Testray.changeItemsPerPage();
+		}
+
+		task ("Create a new Case Type and assert if it was created") {
+			TestrayManage.createNewCaseTypes(caseName = "Test Case Type");
+
+			TestrayManage.assertName(name = "Test Case Type");
+		}
 
 	}
 
@@ -39,8 +57,32 @@ definition {
 	@priority = "5"
 	test AdminCanDeleteCaseTypes {
 
-		// TODO LPS-156679 AdminCanDeleteCaseTypes pending implementation
+		task ("Go to Testray") {
+			ApplicationsMenu.gotoSite(site = "Testray 2");
+		}
 
+		task ("Go to Case Types on Manage Sidebar") {
+			TestrayLayout.clickManageOnSidebar();
+
+			TestrayManage.selectOptionsManage(itemvalue = "Case Types");
+		}
+
+		task ("Change Items Per Page to 150 Items") {
+			Testray.changeItemsPerPage();
+		}
+
+		task ("Create a new Case Type and assert if it was created") {
+			TestrayManage.createNewCaseTypes(caseName = "Test Case Type");
+
+			TestrayManage.assertName(name = "Test Case Type");
+		}
+
+		task ("Delete new case type and asserts that it has been deleted") {
+
+			TestrayManage.deleteNewCaseTypes(valueName = "Test Case Type");
+
+			TestrayManage.assertNameNotPresent(name = "Test Case Type");
+		}
 	}
 
 	@description = "This is a test for LPS-156681 - Verify if the Administrator can Edit Case Types"
@@ -48,7 +90,33 @@ definition {
 	@priority = "5"
 	test AdminCanEditCaseTypes {
 
-		// TODO LPS-156681 AdminCanEditCaseTypes pending implementation
+		task ("Go to Testray") {
+			ApplicationsMenu.gotoSite(site = "Testray 2");
+		}
+
+		task ("Go to Case Types on Manage Sidebar") {
+			TestrayLayout.clickManageOnSidebar();
+
+			TestrayManage.selectOptionsManage(itemvalue = "Case Types");
+		}
+
+		task ("Change Items Per Page to 150 Items") {
+			Testray.changeItemsPerPage();
+		}
+
+		task ("Create a new Case Type and assert if it was created") {
+			TestrayManage.createNewCaseTypes(caseName = "Test Case Type");
+
+			TestrayManage.assertName(name = "Test Case Type");
+		}
+
+		task ("Delete new case type and asserts that it has been deleted") {
+			TestrayManage.editNewCaseTypes(
+				valueName = "Test Case Type",
+				valueType = "Case Type Edited");
+
+			TestrayManage.assertName(name = "Case Type Edited");
+		}
 
 	}
 
