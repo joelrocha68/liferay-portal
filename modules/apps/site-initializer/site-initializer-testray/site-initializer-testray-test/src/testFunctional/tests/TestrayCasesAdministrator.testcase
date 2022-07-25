@@ -30,7 +30,57 @@ definition {
 	@priority = "5"
 	test AdminCanAddCase {
 
-		// TODO LPS-156790 AdminCanAddCase pending implementation
+		task ("Go to Testray") {
+			ApplicationsMenu.gotoSite(site = "Testray 2");
+		}
+
+		task ("Setup Add project") {
+			Testray.createProjects(
+				projectName = "Cases_1 Project",
+				description = "Cases_1 Description");
+		}
+
+		task ("Change Items Per Page to 150 Items") {
+			Testray.changeItemsPerPageInProjects();
+		}
+
+		task ("Go to Project") {
+		Testray.goToProjectPage(projectName = "Cases_1 Project");
+		}
+
+		task ("Navigate the tab and go to Cases") {
+		Testray.projectTabNavigator(navTabName = "Cases");
+		}
+
+		task ("Add Cases") {
+		TestrayCases.addCases(
+			caseName = "Cases_1 Case",
+			Priority = "5",
+			CaseTypeId = "Automated Functional Test",
+			ComponentId = "Workflow",
+			Duration = "60",
+			Description = "Cases_1 case Description",
+			Steps = "Auto Test Steps");
+		}
+
+		task ("assert if it was created the Cases") {
+		Testray.assertProjectName(key_name = "Cases_1 Case");
+		}
+
+		task ("Go to Project Page") {
+		Testray.goToProjectPage(projectName = "Cases_1 Case");
+		}
+
+		task ("assert if it was created the Cases with details") {
+		TestrayCases.assertCaseDetails(
+			Name = "Cases_1 Case",
+			Priority = "5",
+			CaseTypeId = "Automated Functional Test",
+			MainComponent = "Workflow",
+			Duration = "60",
+			Description = "Cases_1 case Description",
+			Steps = "Auto Test Steps");
+		}
 
 	}
 
