@@ -3,7 +3,7 @@ definition {
 	macro assertCreatedRoutine {
 		AssertElementPresent(
 			key_projectName = "${key_name}",
-			locator1 = "Testray#PROJECT_NAME_BUTTON");
+			locator1 = "Testray#PROJECT_NAME");
 	}
 
 	macro assertItemsPerPageValue {
@@ -33,7 +33,7 @@ definition {
 	macro assertProjectName {
 		AssertElementPresent(
 			key_projectName = "${key_name}",
-			locator1 = "Testray#PROJECT_NAME_BUTTON");
+			locator1 = "Testray#PROJECT_NAME");
 	}
 
 	macro assertProjectTitleHeader {
@@ -54,6 +54,12 @@ definition {
 		Click(locator1 = "Testray#ITEMS_PER_PAGE_BUTTON_DROPDOWN");
 	}
 
+	macro changeItemsPerPageInProjects {
+		Click(locator1 = "Testray#ITEMS_PER_PAGE_BUTTON_IN_PROJECTS");
+
+		Click(locator1 = "Testray#ITEMS_PER_PAGE_BUTTON_DROPDOWN");
+	}
+
 	macro clickOnModalNumber {
 		Click(
 			key_pageDirection = "${pageNumber}",
@@ -66,18 +72,18 @@ definition {
 			locator1 = "Testray#NUMBER_PAGE_BUTTON");
 	}
 
-	macro createProjectTestray {
+	macro createProjects {
 		Click(locator1 = "Testray#ADD_PROJECT");
 
 		SelectFrame(locator1 = "Testray#MODAL_BODY");
 
 		Type(
 			locator1 = "TestrayManage#NEW_OPTION_NAME",
-			value1 = "${key_name}");
+			value1 = "${projectName}");
 
 		Type(
 			locator1 = "Testray#NEW_DESCRIPTION_PROJECT",
-			value1 = "ci:test");
+			value1 = "${description}");
 
 		Click(locator1 = "TestrayManage#SAVE_BUTTON");
 	}
@@ -158,7 +164,7 @@ definition {
 	macro goToProjectPage {
 		Click(
 			key_projectName = "${projectName}",
-			locator1 = "Testray#PROJECT_NAME_BUTTON");
+			locator1 = "Testray#PROJECT_NAME");
 	}
 
 	macro goToTestflow {
