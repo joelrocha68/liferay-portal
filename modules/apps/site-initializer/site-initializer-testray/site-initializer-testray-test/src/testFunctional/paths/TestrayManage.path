@@ -37,7 +37,7 @@
 </tr>
 <tr>
 	<td>OPTIONS_NAME</td>
-	<td>//div[contains(@class ,'modal-body')]//td[contains(., '${key_value}')]</td>
+	<td>//div[contains(@class ,'modal-body')]//td[text()='${key_value}']</td>
 	<td></td>
 </tr>
 <tr>
