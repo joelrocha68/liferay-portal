@@ -24,7 +24,7 @@ definition {
 
 	macro goToRoutine {
 		Click(
-			key_projectName = "${key_projectName}",
+			key_projectName = "${routineName}",
 			locator1 = "Testray#PROJECT_NAME");
 	}
 
