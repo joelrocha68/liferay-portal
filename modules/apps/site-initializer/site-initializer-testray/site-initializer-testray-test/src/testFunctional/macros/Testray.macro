@@ -1,11 +1,5 @@
 definition {
 
-	macro assertCreatedRoutine {
-		AssertElementPresent(
-			key_projectName = "${key_name}",
-			locator1 = "Testray#PROJECT_NAME");
-	}
-
 	macro assertItemsPerPageValue {
 		AssertElementPresent(
 			key_value = "${itemValue}",

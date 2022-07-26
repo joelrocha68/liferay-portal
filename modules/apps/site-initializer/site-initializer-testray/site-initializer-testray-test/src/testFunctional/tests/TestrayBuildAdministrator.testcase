@@ -30,7 +30,57 @@ definition {
 	@priority = "5"
 	test AdminCanAddBuild {
 
-		// TODO LPS-156438 AdminCanAddBuild pending implementation
+		task ("Go to Testray") {
+			ApplicationsMenu.gotoSite(site = "Testray 2");
+		}
+
+		task ("Setup Add project") {
+			Testray.createProjects(
+				projectName = "Builds_1 Project",
+				description = "Builds_1 Description");
+
+			Testray.goToProjectPage(projectName = "Builds_1 Project");
+
+			TestrayRoutines.createRoutineTestray(key_name = "Build_1 Routine");
+		}
+
+		task ("Go to Home Page and Change Items Per Page to 150 Items") {
+			TestrayLayout.clickResultsOnSidebar();
+
+			Testray.changeItemsPerPageInProjects();
+		}
+
+		task ("Go to Project") {
+		Testray.goToProjectPage(projectName = "Liferay Portal 7.4");
+		}
+
+		task ("Go to Routines") {
+		TestrayRoutines.goToRoutine(routineName = "EE Package Tester");
+		}
+
+		task ("Add Build") {
+		TestrayBuild.addBuild(
+			fieldName = "Builds_1 Build",
+			routine = "EE Package Tester",
+			productVersion = "7.4.x",
+			gitHash = "12345",
+			Description = "Builds_1 Build Description");
+		}
+
+		task ("assert if it was created the Build") {
+		Testray.assertProjectName(key_name = "Builds_1 Build");
+		}
+
+		task ("Go to Build") {
+		Testray.goToProjectPage(projectName = "Builds_1 Build");
+		}
+
+		task ("assert if it was created the Build with details") {
+		TestrayBuild.assertBuildDetails(
+			productVersion = "7.4.x",
+			Description = "Builds_1 Build Description",
+			gitHash = "12345");
+		}
 
 	}
 
