@@ -10,6 +10,20 @@ definition {
 		Click(locator1 = "TestrayManage#SAVE_BUTTON");
 	}
 
+	macro addNewOptions {
+		Click(locator1 = "TestrayManage#ADD_OPTIONS");
+
+		Type(
+			locator1 = "TestrayManage#NEW_OPTION_NAME",
+			value1 = "${Options}");
+
+		Select(
+			locator1 = "TestrayManage#SELECT_CATEGORY",
+			value1 = "${Category}");
+
+		Click(locator1 = "TestrayManage#SAVE_BUTTON");
+	}
+
 	macro assertName {
 		AssertElementPresent(
 			key_value = "${name}",
@@ -52,7 +66,7 @@ definition {
 		Click(locator1 = "TestrayManage#SAVE_BUTTON");
 	}
 
-	macro deleteNewCaseTypes {
+	macro delete {
 		MouseOver(
 			key_value = "${valueName}",
 			locator1 = "TestrayManage#OPTIONS_NAME");
@@ -62,7 +76,7 @@ definition {
 		MenuItem.clickNoError(menuItem = "Delete");
 	}
 
-	macro editNewCaseTypes {
+	macro goToEditButton {
 		MouseOver(
 			key_value = "${valueName}",
 			locator1 = "TestrayManage#OPTIONS_NAME");
@@ -70,10 +84,29 @@ definition {
 		Click(locator1 = "TestrayDropdown#DROPDOWN_ITEM");
 
 		MenuItem.clickNoError(menuItem = "Edit");
+		
+	}
+
+	macro editNewName {
+		TestrayManage.goToEditButton(valueName = "${valueName}");
 
 		Type(
 			locator1 = "TestrayManage#NEW_OPTION_NAME",
 			value1 = "${valueType}");
+
+		Click(locator1 = "TestrayManage#SAVE_BUTTON");
+	}
+
+	macro editOptions {
+		TestrayManage.goToEditButton(valueName = "${valueName}");
+
+		Type(
+			locator1 = "TestrayManage#NEW_OPTION_NAME",
+			value1 = "${valueType}");
+
+		Select(
+			locator1 = "TestrayManage#SELECT_CATEGORY",
+			value1 = "${Category}");
 
 		Click(locator1 = "TestrayManage#SAVE_BUTTON");
 	}

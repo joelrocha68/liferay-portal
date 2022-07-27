@@ -75,7 +75,7 @@ definition {
 		}
 
 		task ("Delete new case type and asserts that it has been deleted") {
-			TestrayManage.deleteNewCaseTypes(valueName = "Test Case Type");
+			TestrayManage.delete(valueName = "Test Case Type");
 
 			TestrayManage.assertNameNotPresent(name = "Test Case Type");
 		}
@@ -105,8 +105,8 @@ definition {
 			TestrayManage.assertName(name = "Test Case Type");
 		}
 
-		task ("Delete new case type and asserts that it has been deleted") {
-			TestrayManage.editNewCaseTypes(
+		task ("Edit new case type and asserts that it has been edited") {
+			TestrayManage.editNewName(
 				valueName = "Test Case Type",
 				valueType = "Case Type Edited");
 
