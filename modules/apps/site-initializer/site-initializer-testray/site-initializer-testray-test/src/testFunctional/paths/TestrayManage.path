@@ -26,6 +26,11 @@
 	<td></td>
 </tr>
 <tr>
+	<td>SELECT_CATEGORY</td>
+	<td>//select[contains(@id, 'category')]</td>
+	<td></td>
+</tr>
+<tr>
 	<td>SAVE_BUTTON</td>
 	<td>//button[contains(text(),'Save')]</td>
 	<td></td>
