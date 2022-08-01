@@ -1,5 +1,5 @@
 definition {
-	
+
 	macro assertTheDropdownDisabled {
 		AssertElementNotPresent(locator1 = "TestrayDropdown#DROPDOWN_PROJECT");
 	}

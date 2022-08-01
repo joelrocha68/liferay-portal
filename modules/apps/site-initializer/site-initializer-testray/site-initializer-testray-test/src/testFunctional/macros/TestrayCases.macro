@@ -7,61 +7,59 @@ definition {
 			locator1 = "TestrayManage#NEW_OPTION_NAME",
 			value1 = "${caseName}");
 
-        Select(
+		Select(
 			locator1 = "TestrayCases#CASE_PRIORITY",
 			value1 = "${Priority}");
 
-        Select(
+		Select(
 			locator1 = "TestrayCases#CASE_TYPE",
 			value1 = "${CaseTypeId}");
 
-        Select(
+		Select(
 			locator1 = "TestrayCases#MAIN_COMPONENT",
 			value1 = "${ComponentId}");
 
-        Type(
+		Type(
 			locator1 = "TestrayCases#ESTIMATED_DURATION",
 			value1 = "${Duration}");
 
-        Type(
+		Type(
 			locator1 = "TestrayCases#FIELD_DESCRIPTION",
 			value1 = "${Description}");
 
-        Type(
+		Type(
 			locator1 = "TestrayCases#FIELD_STEPS",
 			value1 = "${Steps}");
 
 		Click(locator1 = "TestrayManage#SAVE_BUTTON");
 
-        Refresh();
+		Refresh();
 	}
 
-    macro assertCaseDetails {
+	macro assertCaseDetails {
 		AssertElementPresent(
 			locator1 = "TestrayCases#CASE_DETAILS",
 			value1 = "${caseName}");
 
-        AssertElementPresent(
+		AssertElementPresent(
 			locator1 = "TestrayCases#CASE_DETAILS",
 			value2 = "${Priority}");
 
-        AssertElementPresent(
+		AssertElementPresent(
 			locator1 = "TestrayCases#CASE_DETAILS",
 			value3 = "${MainComponent}");
 
-        AssertElementPresent(
+		AssertElementPresent(
 			locator1 = "TestrayCases#CASE_DETAILS",
 			value4 = "${Duration}");
 
-        AssertElementPresent(
+		AssertElementPresent(
 			locator1 = "TestrayCases#CASE_DETAILS",
 			value5 = "${Description}");
 
-        AssertElementPresent(
+		AssertElementPresent(
 			locator1 = "TestrayCases#CASE_DETAILS",
 			value6 = "${Steps}");
-
-
 	}
 
 }

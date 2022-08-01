@@ -45,7 +45,7 @@ definition {
 	macro closeModalInOptions {
 		Click(locator1 = "TestrayManage#CLOSE_MODAL");
 	}
-	
+
 	macro createNewCaseTypes {
 		Click(locator1 = "TestrayManage#ADD_OPTIONS");
 
@@ -55,11 +55,14 @@ definition {
 
 		Click(locator1 = "TestrayManage#SAVE_BUTTON");
 	}
+
 	macro createNewOption {
 		Click(locator1 = "TestrayManage#ADD_OPTIONS");
+
 		Type(
 			locator1 = "TestrayManage#NEW_OPTION_NAME",
 			value1 = "${key_value}");
+
 		Click(locator1 = "TestrayManage#SAVE_BUTTON");
 	}
 
@@ -71,17 +74,6 @@ definition {
 		Click(locator1 = "TestrayDropdown#DROPDOWN_ITEM");
 
 		MenuItem.clickNoError(menuItem = "Delete");
-	}
-
-	macro goToEditButton {
-		MouseOver(
-			key_value = "${valueName}",
-			locator1 = "TestrayManage#OPTIONS_NAME");
-
-		Click(locator1 = "TestrayDropdown#DROPDOWN_ITEM");
-
-		MenuItem.clickNoError(menuItem = "Edit");
-
 	}
 
 	macro editNewName {
@@ -106,6 +98,16 @@ definition {
 			value1 = "${Category}");
 
 		Click(locator1 = "TestrayManage#SAVE_BUTTON");
+	}
+
+	macro goToEditButton {
+		MouseOver(
+			key_value = "${valueName}",
+			locator1 = "TestrayManage#OPTIONS_NAME");
+
+		Click(locator1 = "TestrayDropdown#DROPDOWN_ITEM");
+
+		MenuItem.clickNoError(menuItem = "Edit");
 	}
 
 	macro selectOptionsManage {

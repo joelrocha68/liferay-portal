@@ -21,7 +21,7 @@ definition {
 		var testPortalInstance = PropsUtil.get("test.portal.instance");
 
 		Testray.tearDownCP();
-		
+
 		if ("${testPortalInstance}" == "true") {
 			PortalInstances.tearDownCP();
 		}
