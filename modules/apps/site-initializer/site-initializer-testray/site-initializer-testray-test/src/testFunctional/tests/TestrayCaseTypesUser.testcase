@@ -21,13 +21,14 @@ definition {
 		var testPortalInstance = PropsUtil.get("test.portal.instance");
 
 		Testray.tearDownCP();
-
+		
 		if ("${testPortalInstance}" == "true") {
 			PortalInstances.tearDownCP();
 		}
 	}
 
 	@description = "This is a test for LPS-150326 - Verify that User can add new case types."
+	@ignore = "Test Stub"
 	@priority = "5"
 	test CanAddNewCaseTypes {
 		task ("Go to Testray") {
@@ -37,15 +38,17 @@ definition {
 		task ("Go to Case Types on Manage Sidebar") {
 			TestrayLayout.clickManageOnSidebar();
 
-			TestrayManage.selectOptionsManage(key_itemvalue = "Case Types");
+			TestrayManage.selectOptionsManage(itemvalue = "Case Types");
+		}
+
+		task ("Change Items Per Page to 150 Items") {
+			Testray.changeItemsPerPage();
 		}
 
 		task ("Create a new Case Type and assert if it was created") {
-			Testray.clickOnModalNumber(pageNumber = "4");
+			TestrayManage.createNewCaseTypes(caseName = "Test Case Type");
 
-			TestrayManage.createNewCaseTypes(key_value = "Test Case Type");
-
-			TestrayManage.assertNameCaseTypes(key_value = "Test Case Type");
+			TestrayManage.assertName(name = "Test Case Type");
 		}
 	}
 
