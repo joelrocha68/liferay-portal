@@ -7,24 +7,38 @@ definition {
 			locator1 = "TestrayManage#NEW_OPTION_NAME",
 			value1 = "${fieldName}");
 
-        Select(
+		Select(
 			locator1 = "TestrayBuild#ROUTINE_ID",
 			value1 = "${routine}");
 
-        Select(
+		Select(
 			locator1 = "TestrayBuild#PRODUCT_VERSION",
 			value1 = "${productVersion}");
 
-        Type(
+		Type(
 			locator1 = "TestrayBuild#GIT_HASH_FIELD",
 			value1 = "${gitHash}");
 
-        Type(
+		Type(
 			locator1 = "TestrayCases#FIELD_DESCRIPTION",
 			value1 = "${Description}");
 
 		Click(locator1 = "TestrayManage#SAVE_BUTTON");
-    }
+	}
+
+	macro assertBuildDetails {
+		AssertElementPresent(
+			locator1 = "TestrayCases#CASE_DETAILS",
+			value1 = "${productVersion}");
+
+		AssertElementPresent(
+			locator1 = "TestrayCases#CASE_DETAILS",
+			value2 = "${Description}");
+
+		AssertElementPresent(
+			locator1 = "TestrayCases#CASE_DETAILS",
+			value3 = "${gitHash}");
+	}
 
 	macro editBuild {
 		TestrayManage.goToEditButton(valueName = "${valueName}");
@@ -33,39 +47,23 @@ definition {
 			locator1 = "TestrayManage#NEW_OPTION_NAME",
 			value1 = "${fieldName}");
 
-        Select(
+		Select(
 			locator1 = "TestrayBuild#ROUTINE_ID",
 			value1 = "${routine}");
 
-        Select(
+		Select(
 			locator1 = "TestrayBuild#PRODUCT_VERSION",
 			value1 = "${productVersion}");
 
-        Type(
+		Type(
 			locator1 = "TestrayBuild#GIT_HASH_FIELD",
 			value1 = "${gitHash}");
 
-        Type(
+		Type(
 			locator1 = "TestrayCases#FIELD_DESCRIPTION",
 			value1 = "${Description}");
 
 		Click(locator1 = "TestrayManage#SAVE_BUTTON");
-	}
-
-    macro assertBuildDetails {
-		AssertElementPresent(
-			locator1 = "TestrayCases#CASE_DETAILS",
-			value1 = "${productVersion}");
-
-        AssertElementPresent(
-			locator1 = "TestrayCases#CASE_DETAILS",
-			value2 = "${Description}");
-
-        AssertElementPresent(
-			locator1 = "TestrayCases#CASE_DETAILS",
-			value3 = "${gitHash}");
-
-
 	}
 
 }

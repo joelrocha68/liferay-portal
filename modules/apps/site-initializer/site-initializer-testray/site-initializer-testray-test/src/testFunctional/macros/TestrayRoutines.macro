@@ -18,7 +18,7 @@ definition {
 		Type(
 			locator1 = "TestrayManage#NEW_OPTION_NAME",
 			value1 = "${key_name}");
-			
+
 		Click(locator1 = "TestrayManage#SAVE_BUTTON");
 	}
 
