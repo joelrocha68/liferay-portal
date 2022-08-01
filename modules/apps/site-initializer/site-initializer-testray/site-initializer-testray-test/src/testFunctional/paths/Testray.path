@@ -12,12 +12,17 @@
 <tbody>
 <tr>
 	<td>ITEMS_PER_PAGE_BUTTON</td>
-	<td>//div[contains(@class, testray-page)]//div[contains(@class, 'pagination')]//button[contains(@class, 'dropdown')]</td>
+	<td>xpath=(//div[contains(@class, 'pagination')]//button[contains(@class, 'dropdown') and contains(.,'')])[3]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>ITEMS_PER_PAGE_BUTTON_IN_PROJECTS</td>
+	<td>xpath=(//div[contains(@class, 'pagination')]//button[contains(@class, 'dropdown') and contains(.,'')])[1]</td>
 	<td></td>
 </tr>
 <tr>
 	<td>ITEMS_PER_PAGE_BUTTON_DROPDOWN</td>
-	<td>//div[contains(@class, 'dropdown-menu')]//button[(text()='${key_itemValue}')]</td>
+	<td>//div[contains(@class, 'dropdown-menu show')]//button[contains(@class, 'dropdown-item') and contains (.,'150 Items')]</td>
 	<td></td>
 </tr>
 <tr>
@@ -41,8 +46,8 @@
 	<td></td>
 </tr>
 <tr>
-	<td>PROJECT_NAME_BUTTON</td>
-	<td>//td[contains(@class, 'text-dark cursor-pointer') and contains(text(), "${key_projectName}")]</td>
+	<td>PROJECT_NAME</td>
+	<td>//section[contains(@class, 'testray-content')]//td[text()='${key_projectName}']</td>
 	<td></td>
 </tr>
 <tr>
