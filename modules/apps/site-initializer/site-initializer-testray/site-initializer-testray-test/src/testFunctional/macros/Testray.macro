@@ -46,16 +46,16 @@ definition {
 		Click(locator1 = "Testray#ITEMS_PER_PAGE_BUTTON");
 
 		Click(
-			locator1 = "Testray#ITEMS_PER_PAGE_SELECT",
-			key_value = "${valuePagination}");
+			key_value = "${valuePagination}",
+			locator1 = "Testray#ITEMS_PER_PAGE_SELECT");
 	}
 
 	macro changePaginationInModal {
 		Click(locator1 = "Testray#ITEMS_PER_PAGE_BUTTON_ON_MODAL");
 
 		Click(
-			locator1 = "Testray#ITEMS_PER_PAGE_SELECT",
-			key_value = "${valuePagination}");
+			key_value = "${valuePagination}",
+			locator1 = "Testray#ITEMS_PER_PAGE_SELECT");
 	}
 
 	macro clickOnModalNumber {
@@ -68,24 +68,6 @@ definition {
 		Click(
 			key_pageNumber = "${pageNumber}",
 			locator1 = "Testray#NUMBER_PAGE_BUTTON");
-	}
-
-	macro gotoAddProject {
-		Click(locator1 = "Testray#ADD_PROJECT");
-	}
-
-	macro typeProjectsField {
-		SelectFrame(locator1 = "Testray#MODAL_BODY");
-
-		Type(
-			locator1 = "TestrayManage#NEW_OPTION_NAME",
-			value1 = "${projectName}");
-
-		Type(
-			locator1 = "Testray#NEW_DESCRIPTION_PROJECT",
-			value1 = "${description}");
-
-		Click(locator1 = "TestrayManage#SAVE_BUTTON");
 	}
 
 	macro createTestraySite {
@@ -155,6 +137,10 @@ definition {
 		CreateObject.saveObject();
 	}
 
+	macro gotoAddProject {
+		Click(locator1 = "Testray#ADD_PROJECT");
+	}
+
 	macro goToNextAndPreviousPage {
 		Click(
 			key_pageDirection = "${pageDirection}",
@@ -219,6 +205,20 @@ definition {
 		Click(locator1 = "Button#MODAL_DELETE");
 
 		Alert.viewSuccessMessage();
+	}
+
+	macro typeProjectsField {
+		SelectFrame(locator1 = "Testray#MODAL_BODY");
+
+		Type(
+			locator1 = "TestrayManage#NEW_OPTION_NAME",
+			value1 = "${projectName}");
+
+		Type(
+			locator1 = "Testray#NEW_DESCRIPTION_PROJECT",
+			value1 = "${description}");
+
+		Click(locator1 = "TestrayManage#SAVE_BUTTON");
 	}
 
 	macro viewOverviewTab {
