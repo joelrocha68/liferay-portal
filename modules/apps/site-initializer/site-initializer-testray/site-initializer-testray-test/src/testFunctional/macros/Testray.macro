@@ -42,16 +42,20 @@ definition {
 			locator1 = "Testray#ITEMS_PER_PAGE_DESCRIPTION");
 	}
 
-	macro changeItemsPerPage {
+	macro changePagination {
 		Click(locator1 = "Testray#ITEMS_PER_PAGE_BUTTON");
 
-		Click(locator1 = "Testray#ITEMS_PER_PAGE_BUTTON_DROPDOWN");
+		Click(
+			locator1 = "Testray#ITEMS_PER_PAGE_SELECT",
+			key_value = "${valuePagination}");
 	}
 
-	macro changeItemsPerPageInProjects {
-		Click(locator1 = "Testray#ITEMS_PER_PAGE_BUTTON_IN_PROJECTS");
+	macro changePaginationInModal {
+		Click(locator1 = "Testray#ITEMS_PER_PAGE_BUTTON_ON_MODAL");
 
-		Click(locator1 = "Testray#ITEMS_PER_PAGE_BUTTON_DROPDOWN");
+		Click(
+			locator1 = "Testray#ITEMS_PER_PAGE_SELECT",
+			key_value = "${valuePagination}");
 	}
 
 	macro clickOnModalNumber {
@@ -66,9 +70,11 @@ definition {
 			locator1 = "Testray#NUMBER_PAGE_BUTTON");
 	}
 
-	macro createProjects {
+	macro gotoAddProject {
 		Click(locator1 = "Testray#ADD_PROJECT");
+	}
 
+	macro typeProjectsField {
 		SelectFrame(locator1 = "Testray#MODAL_BODY");
 
 		Type(

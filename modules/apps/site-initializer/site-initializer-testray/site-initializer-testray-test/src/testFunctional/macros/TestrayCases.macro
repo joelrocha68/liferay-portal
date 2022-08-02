@@ -1,8 +1,6 @@
 definition {
 
-	macro addCases {
-		Click(locator1 = "Testray#ADD_PROJECT");
-
+	macro typeCasesField {
 		Type(
 			locator1 = "TestrayManage#NEW_OPTION_NAME",
 			value1 = "${caseName}");
@@ -36,30 +34,30 @@ definition {
 		Refresh();
 	}
 
-	macro assertCaseDetails {
+	macro viewCaseDetails {
 		AssertElementPresent(
-			locator1 = "TestrayCases#CASE_DETAILS",
+			locator1 = "TestrayCases#CASE_DETAILS_CASE_NAME",
 			value1 = "${caseName}");
 
 		AssertElementPresent(
-			locator1 = "TestrayCases#CASE_DETAILS",
-			value2 = "${Priority}");
+			locator1 = "TestrayCases#CASE_DETAILS_PRIORITY",
+			value1 = "${Priority}");
 
 		AssertElementPresent(
-			locator1 = "TestrayCases#CASE_DETAILS",
-			value3 = "${MainComponent}");
+			locator1 = "TestrayCases#CASE_DETAILS_COMPONENT",
+			value1 = "${MainComponent}");
 
 		AssertElementPresent(
-			locator1 = "TestrayCases#CASE_DETAILS",
-			value4 = "${Duration}");
+			locator1 = "TestrayCases#CASE_DETAILS_DURATION",
+			value1 = "${Duration}");
 
 		AssertElementPresent(
-			locator1 = "TestrayCases#CASE_DETAILS",
-			value5 = "${Description}");
+			locator1 = "TestrayCases#CASE_DETAILS_DESCRIPTION",
+			value1 = "${Description}");
 
 		AssertElementPresent(
-			locator1 = "TestrayCases#CASE_DETAILS",
-			value6 = "${Steps}");
+			locator1 = "TestrayCases#CASE_DETAILS_STEPS",
+			value1 = "${Steps}");
 	}
 
 }

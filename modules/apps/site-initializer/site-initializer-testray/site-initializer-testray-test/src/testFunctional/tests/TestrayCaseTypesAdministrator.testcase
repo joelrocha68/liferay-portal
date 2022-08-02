@@ -39,8 +39,8 @@ definition {
 			TestrayManage.selectOptionsManage(itemvalue = "Case Types");
 		}
 
-		task ("Change Items Per Page to 150 Items") {
-			Testray.changeItemsPerPage();
+		task ("Change Items Per Page") {
+			Testray.changePagination(valuePagination = "150");
 		}
 
 		task ("Create a new Case Type and assert if it was created") {
@@ -64,8 +64,8 @@ definition {
 			TestrayManage.selectOptionsManage(itemvalue = "Case Types");
 		}
 
-		task ("Change Items Per Page to 150 Items") {
-			Testray.changeItemsPerPage();
+		task ("Change Items Per Page") {
+			Testray.changePagination(valuePagination = "150");
 		}
 
 		task ("Create a new Case Type and assert if it was created") {
@@ -75,7 +75,7 @@ definition {
 		}
 
 		task ("Delete new case type and asserts that it has been deleted") {
-			TestrayManage.delete(valueName = "Test Case Type");
+			TestrayManage.deleteProject(valueName = "Test Case Type");
 
 			TestrayManage.assertNameNotPresent(name = "Test Case Type");
 		}
@@ -95,8 +95,8 @@ definition {
 			TestrayManage.selectOptionsManage(itemvalue = "Case Types");
 		}
 
-		task ("Change Items Per Page to 150 Items") {
-			Testray.changeItemsPerPage();
+		task ("Change Items Per Page") {
+			Testray.changePagination(valuePagination = "150");
 		}
 
 		task ("Create a new Case Type and assert if it was created") {

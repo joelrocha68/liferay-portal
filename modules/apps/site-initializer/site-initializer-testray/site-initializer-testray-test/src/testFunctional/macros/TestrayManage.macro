@@ -1,7 +1,7 @@
 definition {
 
 	macro addNewCategory {
-		Click(locator1 = "TestrayManage#ADD_OPTIONS");
+		Click(locator1 = "TestrayManage#ADD_PROJECT_ON_MODAL");
 
 		Type(
 			locator1 = "TestrayManage#NEW_OPTION_NAME",
@@ -11,7 +11,7 @@ definition {
 	}
 
 	macro addNewOptions {
-		Click(locator1 = "TestrayManage#ADD_OPTIONS");
+		Click(locator1 = "TestrayManage#ADD_PROJECT_ON_MODAL");
 
 		Type(
 			locator1 = "TestrayManage#NEW_OPTION_NAME",
@@ -47,7 +47,7 @@ definition {
 	}
 
 	macro createNewCaseTypes {
-		Click(locator1 = "TestrayManage#ADD_OPTIONS");
+		Click(locator1 = "TestrayManage#ADD_PROJECT_ON_MODAL");
 
 		Type(
 			locator1 = "TestrayManage#NEW_OPTION_NAME",
@@ -57,7 +57,7 @@ definition {
 	}
 
 	macro createNewOption {
-		Click(locator1 = "TestrayManage#ADD_OPTIONS");
+		Click(locator1 = "TestrayManage#ADD_PROJECT_ON_MODAL");
 
 		Type(
 			locator1 = "TestrayManage#NEW_OPTION_NAME",
@@ -66,7 +66,7 @@ definition {
 		Click(locator1 = "TestrayManage#SAVE_BUTTON");
 	}
 
-	macro delete {
+	macro deleteProject {
 		MouseOver(
 			key_value = "${valueName}",
 			locator1 = "TestrayManage#OPTIONS_NAME");
@@ -77,7 +77,7 @@ definition {
 	}
 
 	macro editNewName {
-		TestrayManage.goToEditButton(valueName = "${valueName}");
+		TestrayManage.goToEditPage(valueName = "${valueName}");
 
 		Type(
 			locator1 = "TestrayManage#NEW_OPTION_NAME",
@@ -86,8 +86,8 @@ definition {
 		Click(locator1 = "TestrayManage#SAVE_BUTTON");
 	}
 
-	macro editOptions {
-		TestrayManage.goToEditButton(valueName = "${valueName}");
+	macro editNewOptionName {
+		TestrayManage.goToEditPage(valueName = "${valueName}");
 
 		Type(
 			locator1 = "TestrayManage#NEW_OPTION_NAME",
@@ -100,7 +100,7 @@ definition {
 		Click(locator1 = "TestrayManage#SAVE_BUTTON");
 	}
 
-	macro goToEditButton {
+	macro goToEditPage {
 		MouseOver(
 			key_value = "${valueName}",
 			locator1 = "TestrayManage#OPTIONS_NAME");

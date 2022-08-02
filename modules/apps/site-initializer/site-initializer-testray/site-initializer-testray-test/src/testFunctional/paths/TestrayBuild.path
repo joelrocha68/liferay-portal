@@ -26,7 +26,17 @@
 	<td></td>
 </tr>
 <tr>
-	<td>BUILD_DETAILS</td>
+	<td>BUILD_DETAILS_PRODUCT_VERSION</td>
+	<td>//div[contains(@class, 'panel-collapse')]//table[contains(@class, 'qa w-100')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>BUILD_DETAILS_DESCRIPTION</td>
+	<td>//div[contains(@class, 'panel-collapse')]//table[contains(@class, 'qa w-100')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>BUILD_DETAILS_GIT_HASH</td>
 	<td>//div[contains(@class, 'panel-collapse')]//table[contains(@class, 'qa w-100')]</td>
 	<td></td>
 </tr>
