@@ -1,5 +1,11 @@
 definition {
 
+	macro editBuild {
+		TestrayManage.goToEditPage(valueName = "${valueName}");
+
+		TestrayBuild.typeBuildField();
+	}
+
 	macro typeBuildField {
 		Type(
 			locator1 = "TestrayManage#NEW_OPTION_NAME",
@@ -36,12 +42,6 @@ definition {
 		AssertElementPresent(
 			locator1 = "TestrayBuild#BUILD_DETAILS_GIT_HASH",
 			value1 = "${gitHash}");
-	}
-
-	macro editBuild {
-		TestrayManage.goToEditPage(valueName = "${valueName}");
-
-		TestrayBuild.typeBuildField();
 	}
 
 }
