@@ -110,6 +110,20 @@ definition {
 		MenuItem.clickNoError(menuItem = "Edit");
 	}
 
+	macro editOptions {
+		TestrayManage.goToEditButton(valueName = "${valueName}");
+
+		Type(
+			locator1 = "TestrayManage#NEW_OPTION_NAME",
+			value1 = "${valueType}");
+
+		Select(
+			locator1 = "TestrayManage#SELECT_CATEGORY",
+			value1 = "${Category}");
+
+		Click(locator1 = "TestrayManage#SAVE_BUTTON");
+	}
+
 	macro selectOptionsManage {
 		Click(
 			key_itemvalue = "${itemvalue}",

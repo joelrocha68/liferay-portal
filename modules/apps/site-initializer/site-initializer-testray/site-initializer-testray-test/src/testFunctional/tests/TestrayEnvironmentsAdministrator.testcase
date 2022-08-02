@@ -75,7 +75,37 @@ definition {
 	@priority = "5"
 	test AdminCanAddOptions {
 
-		// TODO LPS-157309 AdminCanAddOptions pending implementation
+		task ("Go to Testray") {
+			ApplicationsMenu.gotoSite(site = "Testray 2");
+		}
+
+		task ("Setup Add Option") {
+			TestrayLayout.clickManageOnSidebar();
+
+			TestrayManage.selectOptionsManage(itemvalue = "Categories");
+
+			TestrayManage.addNewCategory(Category = "Environments_2 Category");
+		}
+
+		task ("Go to Case Types on Manage Sidebar") {
+			TestrayLayout.clickManageOnSidebar();
+
+			TestrayManage.selectOptionsManage(itemvalue = "Options");
+		}
+
+		task ("Change Items Per Page to 150 Items") {
+			Testray.changeItemsPerPage();
+		}
+
+		task ("Create a Options and assert if it was created") {
+				TestrayManage.addNewOptions(
+				Options = "Environments_2 Option",
+				Category = "Environments_2 Category");
+
+			TestrayManage.assertName(name = "Environments_2 Option");
+
+			TestrayManage.assertName(name = "Environments_2 Category");
+		}
 
 	}
 
@@ -93,7 +123,33 @@ definition {
 	@priority = "5"
 	test AdminCanDeleteCategory {
 
-		// TODO LPS-157237 AdminCanDeleteCategory pending implementation
+		task ("Go to Testray") {
+			ApplicationsMenu.gotoSite(site = "Testray 2");
+		}
+
+		task ("Setup Add Category") {
+			TestrayLayout.clickManageOnSidebar();
+
+			TestrayManage.selectOptionsManage(itemvalue = "Categories");
+
+			TestrayManage.addNewCategory(Category = "Environments_4 Category");
+		}
+
+		task ("Go to Case Types on Manage Sidebar") {
+			TestrayLayout.clickManageOnSidebar();
+
+			TestrayManage.selectOptionsManage(itemvalue = "Categories");
+		}
+
+		task ("Change Items Per Page to 150 Items") {
+			Testray.changeItemsPerPage();
+		}
+
+		task ("Delete Categories and asserts that it has been deleted") {
+			TestrayManage.delete(valueName = "Environments_4 Category");
+
+			TestrayManage.assertNameNotPresent(name = "Environments_4 Category");
+		}
 
 	}
 
@@ -102,7 +158,29 @@ definition {
 	@priority = "5"
 	test AdminCanEditFactorCategories {
 
-		// TODO LPS-157307 AdminCanEditFactorCategories pending implementation
+		task ("Go to Testray") {
+			ApplicationsMenu.gotoSite(site = "Testray 2");
+		}
+
+		task ("Setup Add Category") {
+			TestrayLayout.clickManageOnSidebar();
+
+			TestrayManage.selectOptionsManage(itemvalue = "Categories");
+
+			TestrayManage.addNewCategory(Category = "Environments_6 Category");
+		}
+
+		task ("Change Items Per Page to 150 Items") {
+			Testray.changeItemsPerPage();
+		}
+
+		task ("Edit Categories and asserts that it has been Edited") {
+			TestrayManage.editNewName(
+				valueName = "Environments_6 Category",
+				valueType = "Environments_6 Category Edited");
+
+			TestrayManage.assertName(name = "Environments_6 Category Edited");
+		}
 
 	}
 
@@ -111,7 +189,54 @@ definition {
 	@priority = "5"
 	test AdminCanEditOptionChangingCategory {
 
-		// TODO LPS-157326 AdminCanEditOptionChangingCategory pending implementation
+		task ("Go to Testray") {
+			ApplicationsMenu.gotoSite(site = "Testray 2");
+		}
+
+		task ("Setup Add Category A/B and Options") {
+			TestrayLayout.clickManageOnSidebar();
+
+			TestrayManage.selectOptionsManage(itemvalue = "Categories");
+
+			TestrayManage.addNewCategory(Category = "Environments_8 Category A");
+
+			TestrayManage.addNewCategory(Category = "Environments_8 Category B");
+
+			TestrayManage.assertName(name = "Environments_8 Category A");
+
+			TestrayManage.assertName(name = "Environments_8 Category B");
+
+			TestrayLayout.clickManageOnSidebar();
+
+			TestrayManage.selectOptionsManage(itemvalue = "Options");
+
+			TestrayManage.addNewOptions(
+				Options = "Environments_8 Option",
+				Category = "Environments_8 Category A");
+
+			TestrayManage.assertName(name = "Environments_8 Option");
+
+			TestrayManage.assertName(name = "Environments_8 Category A");
+		}
+
+		task ("Change Items Per Page to 150 Items") {
+			Testray.changeItemsPerPage();
+		}
+
+		task ("Edit Options and asserts that it has changing the Category") {
+			TestrayManage.editOptions(
+				valueName = "Environments_8 Option",
+				valueType = "Environments_8 Option",
+				Category = "Environments_8 Category B");
+
+			TestrayManage.assertName(name = "Environments_8 Option");
+
+			TestrayManage.assertName(name = "Environments_8 Category B");
+		}
+
+		task ("Asserts Categories A that it has been deleted") {
+			TestrayManage.assertNameNotPresent(name = "Environments_8 Category A");
+		}
 
 	}
 
@@ -120,14 +245,47 @@ definition {
 	@priority = "5"
 	test AdminCanEditOptionName {
 
-		// TODO LPS-157323 AdminCanEditOptionName pending implementation
+		task ("Go to Testray") {
+			ApplicationsMenu.gotoSite(site = "Testray 2");
+		}
+
+		task ("Setup Add Option") {
+			TestrayLayout.clickManageOnSidebar();
+
+			TestrayManage.selectOptionsManage(itemvalue = "Categories");
+
+			TestrayManage.addNewCategory(Category = "Environments_7 Category");
+
+			TestrayLayout.clickManageOnSidebar();
+
+			TestrayManage.selectOptionsManage(itemvalue = "Options");
+
+			TestrayManage.editOptions(
+				Options = "Environments_7 Option",
+				Category = "Environments_7 Category");
+
+			TestrayManage.assertName(name = "Environments_7 Option");
+
+			TestrayManage.assertName(name = "Environments_7 Category");
+		}
+
+		task ("Edit Options and asserts that it has been Edited") {
+			TestrayManage.editOptions(
+				valueName = "Environments_7 Option",
+				valueType = "Environments_7 Option Edited",
+				Category = "Environments_7 Category");
+
+			TestrayManage.assertName(name = "Environments_7 Option Edited");
+
+			TestrayManage.assertName(name = "Environments_7 Category");
+		}
 
 	}
 
 	@description = "This is a test for LPS-157328 - Verify if As an Administrator I should not be able to add a duplicate Factor Category"
 	@ignore = "Test Stub"
 	@priority = "5"
-	test AdminCanNotAddCuplicateFactorCategory {
+	test AdminCanNotAddDuplicateFactorCategory {
 
 		// TODO LPS-157328 AdminCanNotAddCuplicateFactorCategory pending implementation
 
