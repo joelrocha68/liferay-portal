@@ -107,7 +107,61 @@ definition {
 	@priority = "5"
 	test AdminCanDeleteBuild {
 
-		// TODO LPS-156513 AdminCanDeleteBuild pending implementation
+		task ("Go to Testray") {
+			ApplicationsMenu.gotoSite(site = "Testray 2");
+		}
+
+		task ("Setup Add Build") {
+			Testray.createProjects(
+				projectName = "Builds_3 Project",
+				description = "Builds_3 Description");
+
+			Testray.changeItemsPerPageInProjects();
+
+			Testray.goToProjectPage(projectName = "Builds_3 Project");
+
+			TestrayRoutines.createRoutineTestray(key_name = "Build_3 Routine");
+
+			TestrayRoutines.goToRoutine(routineName = "Build_3 Routine");
+
+			TestrayBuild.addBuild(
+			fieldName = "Builds_3 Build",
+			routine = "Builds_3 Routine",
+			productVersion = "1.x",
+			gitHash = "12345",
+			Description = "Builds_3 Build Description");
+
+			Testray.assertProjectName(key_name = "Builds_3 Build");
+		}
+
+		task ("Go to Home Page and Change Items Per Page to 150 Items") {
+			TestrayLayout.clickResultsOnSidebar();
+
+			Testray.changeItemsPerPageInProjects();
+		}
+
+		task ("Go to Project") {
+		Testray.goToProjectPage(projectName = "Liferay Portal 7.4");
+		}
+
+		task ("Go to Routines") {
+		TestrayRoutines.goToRoutine(routineName = "EE Package Tester");
+		}
+
+		task ("Add Build") {
+		TestrayBuild.addBuild(
+			fieldName = "Builds_3 Build",
+			routine = "EE Package Tester",
+			productVersion = "7.4.x",
+			gitHash = "12345",
+			Description = "Builds_3 Build Description");
+		}
+
+		task ("Delete new case type and asserts that it has been deleted") {
+			TestrayManage.delete(valueName = "Builds_3 Build");
+
+			TestrayManage.assertNameNotPresent(name = "Builds_3 Build");
+		}
 
 	}
 
@@ -125,7 +179,67 @@ definition {
 	@priority = "5"
 	test AdminCanEditBuild {
 
-		// TODO LPS-156543 AdminCanEditRoutine pending implementation
+		task ("Go to Testray") {
+			ApplicationsMenu.gotoSite(site = "Testray 2");
+		}
+
+		task ("Setup Add Build") {
+			Testray.createProjects(
+				projectName = "Builds_4 Project",
+				description = "Builds_4 Description");
+
+			Testray.changeItemsPerPageInProjects();
+
+			Testray.goToProjectPage(projectName = "Builds_4 Project");
+
+			TestrayRoutines.createRoutineTestray(key_name = "Build_4 Routine");
+
+			TestrayRoutines.goToRoutine(routineName = "Build_4 Routine");
+
+			TestrayBuild.addBuild(
+			fieldName = "Builds_3 Build",
+			routine = "Builds_3 Routine",
+			productVersion = "1.x",
+			gitHash = "12345",
+			Description = "Builds_3 Build Description");
+
+			Testray.assertProjectName(key_name = "Builds_3 Build");
+		}
+
+		task ("Go to Home Page and Change Items Per Page to 150 Items") {
+			TestrayLayout.clickResultsOnSidebar();
+
+			Testray.changeItemsPerPageInProjects();
+		}
+
+		task ("Go to Project") {
+		Testray.goToProjectPage(projectName = "Liferay Portal 7.4");
+		}
+
+		task ("Go to Routines") {
+		TestrayRoutines.goToRoutine(routineName = "EE Package Tester");
+		}
+
+		task ("Add Build") {
+		TestrayBuild.addBuild(
+			fieldName = "Builds_4 Build",
+			routine = "EE Package Tester",
+			productVersion = "7.4.x",
+			gitHash = "12345",
+			Description = "Builds_4 Build Description");
+		}
+
+		task ("Edit Build and asserts that it has been edited") {
+			TestrayBuild.editBuild(
+			valueName = "Builds_4 Build",
+			fieldName = "Build_4 Build Edited",
+			routine = "EE Package Tester",
+			productVersion = "7.4.x",
+			gitHash = "12345",
+			Description = "Builds_4 Build Description Edited");
+
+			TestrayManage.assertName(name = "Build_4 Build Edited");
+		}
 
 	}
 
@@ -150,7 +264,7 @@ definition {
 	@description = "This is a test for LPS-156557 - Verify if as an Administrator I should not be able to archive a build where its task is in analysis using"
 	@ignore = "Test Stub"
 	@priority = "5"
-	test AdminCanNotArchiveBuildInAnalysis {
+	test AdminCanNotArchivedBuildInAnalysis {
 
 		// TODO LPS-156557 AdminCanNotArchivedBuildInAnalysis pending implementation
 
@@ -168,7 +282,7 @@ definition {
 	@description = "This is a test for LPS-156585 - Verify if as an Administrator I should be able to sort the Builds Index"
 	@ignore = "Test Stub"
 	@priority = "4"
-	test AdminCanSortBuildByName {
+	test AdminCanSortCompilationBuildName {
 
 		// TODO LPS-156585 AdminCanSortCompilationBuildName pending implementation
 
