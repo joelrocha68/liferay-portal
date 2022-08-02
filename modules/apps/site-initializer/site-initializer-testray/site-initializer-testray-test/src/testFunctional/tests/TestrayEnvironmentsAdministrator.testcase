@@ -48,7 +48,25 @@ definition {
 	@priority = "5"
 	test AdminCanAddCategory {
 
-		// TODO LPS-157231 AdminCanAddCategory pending implementation
+		task ("Go to Testray") {
+			ApplicationsMenu.gotoSite(site = "Testray 2");
+		}
+
+		task ("Go to Case Types on Manage Sidebar") {
+			TestrayLayout.clickManageOnSidebar();
+
+			TestrayManage.selectOptionsManage(itemvalue = "Categories");
+		}
+
+		task ("Change Items Per Page to 150 Items") {
+			Testray.changeItemsPerPage();
+		}
+
+		task ("Create a Category and assert if it was created") {
+			TestrayManage.addNewCategory(Category = "Environments_1 Category");
+
+			TestrayManage.assertName(name = "Environments_1 Category");
+		}
 
 	}
 
