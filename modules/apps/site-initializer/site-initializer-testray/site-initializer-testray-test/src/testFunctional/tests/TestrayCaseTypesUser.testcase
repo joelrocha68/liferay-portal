@@ -41,8 +41,8 @@ definition {
 			TestrayManage.selectOptionsManage(itemvalue = "Case Types");
 		}
 
-		task ("Change Items Per Page to 150 Items") {
-			Testray.changeItemsPerPage();
+		task ("Change Items Per Page") {
+			Testray.changePagination(valuePagination = "150");
 		}
 
 		task ("Create a new Case Type and assert if it was created") {
