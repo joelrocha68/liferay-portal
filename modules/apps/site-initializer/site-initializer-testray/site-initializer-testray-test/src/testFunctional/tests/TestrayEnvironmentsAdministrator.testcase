@@ -47,7 +47,6 @@ definition {
 	@ignore = "Test Stub"
 	@priority = "5"
 	test AdminCanAddCategory {
-
 		task ("Go to Testray") {
 			ApplicationsMenu.gotoSite(site = "Testray 2");
 		}
@@ -63,18 +62,16 @@ definition {
 		}
 
 		task ("Create a Category and assert if it was created") {
-			TestrayManage.addNewCategory(Category = "Environments_1 Category");
+			TestrayManage.addNewCategory(category = "Environments_1 Category");
 
 			TestrayManage.assertName(name = "Environments_1 Category");
 		}
-
 	}
 
 	@description = "This is a test for LPS-157309 - Verify if as an Administrator I am able to add Options"
 	@ignore = "Test Stub"
 	@priority = "5"
 	test AdminCanAddOptions {
-
 		task ("Go to Testray") {
 			ApplicationsMenu.gotoSite(site = "Testray 2");
 		}
@@ -84,7 +81,7 @@ definition {
 
 			TestrayManage.selectOptionsManage(itemvalue = "Categories");
 
-			TestrayManage.addNewCategory(Category = "Environments_2 Category");
+			TestrayManage.addNewCategory(category = "Environments_2 Category");
 		}
 
 		task ("Go to Case Types on Manage Sidebar") {
@@ -98,15 +95,14 @@ definition {
 		}
 
 		task ("Create a Options and assert if it was created") {
-				TestrayManage.addNewOptions(
-				Options = "Environments_2 Option",
-				Category = "Environments_2 Category");
+			TestrayManage.addNewOptions(
+				category = "Environments_2 Category",
+				options = "Environments_2 Option");
 
 			TestrayManage.assertName(name = "Environments_2 Option");
 
 			TestrayManage.assertName(name = "Environments_2 Category");
 		}
-
 	}
 
 	@description = "This is a test for LPS-157321 - Verify if as an Administrator I am able to configure Default Environment Factors for a Routine"
@@ -122,7 +118,6 @@ definition {
 	@ignore = "Test Stub"
 	@priority = "5"
 	test AdminCanDeleteCategory {
-
 		task ("Go to Testray") {
 			ApplicationsMenu.gotoSite(site = "Testray 2");
 		}
@@ -132,7 +127,7 @@ definition {
 
 			TestrayManage.selectOptionsManage(itemvalue = "Categories");
 
-			TestrayManage.addNewCategory(Category = "Environments_4 Category");
+			TestrayManage.addNewCategory(category = "Environments_4 Category");
 		}
 
 		task ("Go to Case Types on Manage Sidebar") {
@@ -150,14 +145,12 @@ definition {
 
 			TestrayManage.assertNameNotPresent(name = "Environments_4 Category");
 		}
-
 	}
 
 	@description = "This is a test for LPS-157307 - Verify if as an Administrator I am able to edit Factor Categories"
 	@ignore = "Test Stub"
 	@priority = "5"
 	test AdminCanEditFactorCategories {
-
 		task ("Go to Testray") {
 			ApplicationsMenu.gotoSite(site = "Testray 2");
 		}
@@ -167,7 +160,7 @@ definition {
 
 			TestrayManage.selectOptionsManage(itemvalue = "Categories");
 
-			TestrayManage.addNewCategory(Category = "Environments_6 Category");
+			TestrayManage.addNewCategory(category = "Environments_6 Category");
 		}
 
 		task ("Change Items Per Page") {
@@ -181,14 +174,12 @@ definition {
 
 			TestrayManage.assertName(name = "Environments_6 Category Edited");
 		}
-
 	}
 
 	@description = "This is a test for LPS-157326 - Verify if as an Administrator I am able to edit the Option by changing the Category"
 	@ignore = "Test Stub"
 	@priority = "5"
 	test AdminCanEditOptionChangingCategory {
-
 		task ("Go to Testray") {
 			ApplicationsMenu.gotoSite(site = "Testray 2");
 		}
@@ -198,9 +189,9 @@ definition {
 
 			TestrayManage.selectOptionsManage(itemvalue = "Categories");
 
-			TestrayManage.addNewCategory(Category = "Environments_8 Category A");
+			TestrayManage.addNewCategory(category = "Environments_8 Category A");
 
-			TestrayManage.addNewCategory(Category = "Environments_8 Category B");
+			TestrayManage.addNewCategory(category = "Environments_8 Category B");
 
 			TestrayManage.assertName(name = "Environments_8 Category A");
 
@@ -211,8 +202,8 @@ definition {
 			TestrayManage.selectOptionsManage(itemvalue = "Options");
 
 			TestrayManage.addNewOptions(
-				Options = "Environments_8 Option",
-				Category = "Environments_8 Category A");
+				category = "Environments_8 Category A",
+				options = "Environments_8 Option");
 
 			TestrayManage.assertName(name = "Environments_8 Option");
 
@@ -225,9 +216,9 @@ definition {
 
 		task ("Edit Options and asserts that it has changing the Category") {
 			TestrayManage.editOptions(
+				category = "Environments_8 Category B",
 				valueName = "Environments_8 Option",
-				valueType = "Environments_8 Option",
-				Category = "Environments_8 Category B");
+				valueType = "Environments_8 Option");
 
 			TestrayManage.assertName(name = "Environments_8 Option");
 
@@ -237,14 +228,12 @@ definition {
 		task ("Asserts Categories A that it has been deleted") {
 			TestrayManage.assertNameNotPresent(name = "Environments_8 Category A");
 		}
-
 	}
 
 	@description = "This is a test for LPS-157323 - Verify if as an Administrator I am able to edit the Option Name"
 	@ignore = "Test Stub"
 	@priority = "5"
 	test AdminCanEditOptionName {
-
 		task ("Go to Testray") {
 			ApplicationsMenu.gotoSite(site = "Testray 2");
 		}
@@ -254,15 +243,15 @@ definition {
 
 			TestrayManage.selectOptionsManage(itemvalue = "Categories");
 
-			TestrayManage.addNewCategory(Category = "Environments_7 Category");
+			TestrayManage.addNewCategory(category = "Environments_7 Category");
 
 			TestrayLayout.clickManageOnSidebar();
 
 			TestrayManage.selectOptionsManage(itemvalue = "Options");
 
 			TestrayManage.addNewOptions(
-				Options = "Environments_7 Option",
-				Category = "Environments_7 Category");
+				category = "Environments_7 Category",
+				options = "Environments_7 Option");
 
 			TestrayManage.assertName(name = "Environments_7 Option");
 
@@ -271,15 +260,14 @@ definition {
 
 		task ("Edit Options and asserts that it has been Edited") {
 			TestrayManage.editOptions(
+				category = "Environments_7 Category",
 				valueName = "Environments_7 Option",
-				valueType = "Environments_7 Option Edited",
-				Category = "Environments_7 Category");
+				valueType = "Environments_7 Option Edited");
 
 			TestrayManage.assertName(name = "Environments_7 Option Edited");
 
 			TestrayManage.assertName(name = "Environments_7 Category");
 		}
-
 	}
 
 	@description = "This is a test for LPS-157328 - Verify if As an Administrator I should not be able to add a duplicate Factor Category"

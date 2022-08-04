@@ -12,24 +12,22 @@ definition {
 
 		User.firstLoginPG();
 
-		// Testray.createTestraySite(siteName = "Testray 2");
+		Testray.createTestraySite(siteName = "Testray 2");
+
 	}
 
-	// tearDown {
-	// 	var testPortalInstance = PropsUtil.get("test.portal.instance");
-
-	// 	Testray.tearDownCP();
-
-	// 	if ("${testPortalInstance}" == "true") {
-	// 		PortalInstances.tearDownCP();
-	// 	}
-	// }
+	tearDown {
+		var testPortalInstance = PropsUtil.get("test.portal.instance");
+		Testray.tearDownCP();
+		if ("${testPortalInstance}" == "true") {
+			PortalInstances.tearDownCP();
+	}
+	}
 
 	@description = "This is a test for LPS-156790 - Verify if as an Administrator I am able to add Cases without Subcomponents"
 	@ignore = "Test Stub"
 	@priority = "5"
 	test AdminCanAddCase {
-
 		task ("Go to Testray") {
 			ApplicationsMenu.gotoSite(site = "Testray 2");
 		}
@@ -38,8 +36,8 @@ definition {
 			Testray.gotoAddProject();
 
 			Testray.typeProjectsField(
-				projectName = "Cases_1 Project",
-				description = "Cases_1 Description");
+				description = "Cases_1 Description",
+				projectName = "Cases_1 Project");
 		}
 
 		task ("Change Items Per Page") {
@@ -59,12 +57,12 @@ definition {
 
 			TestrayCases.typeCasesField(
 				caseName = "Cases_1 Case",
-				Priority = "5",
-				CaseTypeId = "Automated Functional Test",
-				ComponentId = "Workflow",
-				Duration = "60",
-				Description = "Cases_1 case Description",
-				Steps = "Auto Test Steps");
+				caseTypeId = "Automated Functional Test",
+				componentId = "Workflow",
+				description = "Cases_1 case Description",
+				duration = "60",
+				priority = "5",
+				steps = "Auto Test Steps");
 		}
 
 		task ("assert if it was created the Cases") {
@@ -77,15 +75,14 @@ definition {
 
 		task ("assert if it was created the Cases with details") {
 			TestrayCases.viewCaseDetails(
-				Name = "Cases_1 Case",
-				Priority = "5",
-				CaseTypeId = "Automated Functional Test",
+				caseTypeId = "Automated Functional Test",
+				description = "Cases_1 case Description",
+				duration = "60",
 				MainComponent = "Workflow",
-				Duration = "60",
-				Description = "Cases_1 case Description",
-				Steps = "Auto Test Steps");
+				name = "Cases_1 Case",
+				priority = "5",
+				steps = "Auto Test Steps");
 		}
-
 	}
 
 	@description = "This is a test for LPS-156933 - Verify if as an Administrator I should not be able to add a duplicate case"
