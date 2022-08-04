@@ -29,7 +29,6 @@ definition {
 	@ignore = "Test Stub"
 	@priority = "5"
 	test AdminCanAddBuild {
-
 		task ("Go to Testray") {
 			ApplicationsMenu.gotoSite(site = "Testray 2");
 		}
@@ -38,8 +37,8 @@ definition {
 			Testray.gotoAddProject();
 
 			Testray.typeProjectsField(
-				projectName = "Builds_1 Project",
-				description = "Builds_1 Description");
+				description = "Builds_1 Description",
+				projectName = "Builds_1 Project");
 
 			Testray.goToProjectPage(projectName = "Builds_1 Project");
 
@@ -66,11 +65,11 @@ definition {
 			Testray.gotoAddProject();
 
 			TestrayBuild.typeBuildField(
-			fieldName = "Builds_1 Build",
-			routine = "EE Package Tester",
-			productVersion = "7.4.x",
-			gitHash = "12345",
-			Description = "Builds_1 Build Description");
+				description = "Builds_1 Build Description",
+				fieldName = "Builds_1 Build",
+				gitHash = "12345",
+				productVersion = "7.4.x",
+				routine = "EE Package Tester");
 		}
 
 		task ("assert if it was created the Build") {
@@ -83,11 +82,10 @@ definition {
 
 		task ("assert if it was created the Build with details") {
 			TestrayBuild.viewBuildDetails(
-			productVersion = "7.4.x",
-			Description = "Builds_1 Build Description",
-			gitHash = "12345");
+				description = "Builds_1 Build Description",
+				gitHash = "12345",
+				productVersion = "7.4.x");
 		}
-
 	}
 
 	@description = "This is a test for LPS-157540 - Verify if as an Administrator I should be able to archive a build "
@@ -112,7 +110,6 @@ definition {
 	@ignore = "Test Stub"
 	@priority = "5"
 	test AdminCanDeleteBuild {
-
 		task ("Go to Testray") {
 			ApplicationsMenu.gotoSite(site = "Testray 2");
 		}
@@ -121,8 +118,8 @@ definition {
 			Testray.gotoAddProject();
 
 			Testray.typeProjectsField(
-				projectName = "Builds_3 Project",
-				description = "Builds_3 Description");
+				description = "Builds_3 Description",
+				projectName = "Builds_3 Project");
 
 			Testray.changePaginationInModal();
 
@@ -137,11 +134,11 @@ definition {
 			Testray.gotoAddProject();
 
 			TestrayBuild.typeBuildField(
-			fieldName = "Builds_3 Build",
-			routine = "Builds_3 Routine",
-			productVersion = "1.x",
-			gitHash = "12345",
-			Description = "Builds_3 Build Description");
+				description = "Builds_3 Build Description",
+				fieldName = "Builds_3 Build",
+				gitHash = "12345",
+				productVersion = "1.x",
+				routine = "Builds_3 Routine");
 
 			Testray.assertProjectName(key_name = "Builds_3 Build");
 		}
@@ -164,11 +161,11 @@ definition {
 			Testray.gotoAddProject();
 
 			TestrayBuild.typeBuildField(
-			fieldName = "Builds_3 Build",
-			routine = "EE Package Tester",
-			productVersion = "7.4.x",
-			gitHash = "12345",
-			Description = "Builds_3 Build Description");
+				description = "Builds_3 Build Description",
+				fieldName = "Builds_3 Build",
+				gitHash = "12345",
+				productVersion = "7.4.x",
+				routine = "EE Package Tester");
 		}
 
 		task ("Delete new case type and asserts that it has been deleted") {
@@ -176,7 +173,6 @@ definition {
 
 			TestrayManage.assertNameNotPresent(name = "Builds_3 Build");
 		}
-
 	}
 
 	@description = "This is a test for LPS-156575 - Verify if as an Administrator I should be able to delete a build that contains runs"
@@ -192,7 +188,6 @@ definition {
 	@ignore = "Test Stub"
 	@priority = "5"
 	test AdminCanEditBuild {
-
 		task ("Go to Testray") {
 			ApplicationsMenu.gotoSite(site = "Testray 2");
 		}
@@ -201,8 +196,8 @@ definition {
 			Testray.gotoAddProject();
 
 			Testray.typeProjectsField(
-				projectName = "Builds_4 Project",
-				description = "Builds_4 Description");
+				description = "Builds_4 Description",
+				projectName = "Builds_4 Project");
 
 			Testray.changePaginationInModal(valuePagination = "150");
 
@@ -217,11 +212,11 @@ definition {
 			Testray.gotoAddProject();
 
 			TestrayBuild.typeBuildField(
+				description = "Builds_3 Build Description",
 				fieldName = "Builds_3 Build",
-				routine = "Builds_3 Routine",
-				productVersion = "1.x",
 				gitHash = "12345",
-				Description = "Builds_3 Build Description");
+				productVersion = "1.x",
+				routine = "Builds_3 Routine");
 
 			Testray.assertProjectName(key_name = "Builds_3 Build");
 		}
@@ -244,25 +239,24 @@ definition {
 			Testray.gotoAddProject();
 
 			TestrayBuild.typeBuildField(
+				description = "Builds_4 Build Description",
 				fieldName = "Builds_4 Build",
-				routine = "EE Package Tester",
-				productVersion = "7.4.x",
 				gitHash = "12345",
-				Description = "Builds_4 Build Description");
+				productVersion = "7.4.x",
+				routine = "EE Package Tester");
 		}
 
 		task ("Edit Build and asserts that it has been edited") {
 			TestrayBuild.editBuild(
-				valueName = "Builds_4 Build",
+				description = "Builds_4 Build Description Edited",
 				fieldName = "Build_4 Build Edited",
-				routine = "EE Package Tester",
-				productVersion = "7.4.x",
 				gitHash = "12345",
-				Description = "Builds_4 Build Description Edited");
+				productVersion = "7.4.x",
+				routine = "EE Package Tester",
+				valueName = "Builds_4 Build");
 
 			TestrayManage.assertName(name = "Build_4 Build Edited");
 		}
-
 	}
 
 	@description = "This is a test for LPS-156546 - Verify if as an Administrator I should not be able to add a duplicate build"

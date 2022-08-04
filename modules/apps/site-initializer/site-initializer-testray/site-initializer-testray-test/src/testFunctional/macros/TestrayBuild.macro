@@ -25,7 +25,7 @@ definition {
 
 		Type(
 			locator1 = "TestrayCases#FIELD_DESCRIPTION",
-			value1 = "${Description}");
+			value1 = "${description}");
 
 		Click(locator1 = "TestrayManage#SAVE_BUTTON");
 	}
@@ -37,7 +37,7 @@ definition {
 
 		AssertElementPresent(
 			locator1 = "TestrayBuild#BUILD_DETAILS_DESCRIPTION",
-			value1 = "${Description}");
+			value1 = "${description}");
 
 		AssertElementPresent(
 			locator1 = "TestrayBuild#BUILD_DETAILS_GIT_HASH",
