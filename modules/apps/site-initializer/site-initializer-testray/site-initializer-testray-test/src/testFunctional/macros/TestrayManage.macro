@@ -111,7 +111,7 @@ definition {
 	}
 
 	macro editOptions {
-		TestrayManage.goToEditButton(valueName = "${valueName}");
+		TestrayManage.goToEditPage(valueName = "${valueName}");
 
 		Type(
 			locator1 = "TestrayManage#NEW_OPTION_NAME",
