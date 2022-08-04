@@ -58,8 +58,8 @@ definition {
 			TestrayManage.selectOptionsManage(itemvalue = "Categories");
 		}
 
-		task ("Change Items Per Page to 150 Items") {
-			Testray.changeItemsPerPage();
+		task ("Change Items Per Page") {
+			Testray.changePagination(valuePagination = "150");
 		}
 
 		task ("Create a Category and assert if it was created") {
@@ -93,8 +93,8 @@ definition {
 			TestrayManage.selectOptionsManage(itemvalue = "Options");
 		}
 
-		task ("Change Items Per Page to 150 Items") {
-			Testray.changeItemsPerPage();
+		task ("Change Items Per Page") {
+			Testray.changePagination(valuePagination = "150");
 		}
 
 		task ("Create a Options and assert if it was created") {
@@ -141,12 +141,12 @@ definition {
 			TestrayManage.selectOptionsManage(itemvalue = "Categories");
 		}
 
-		task ("Change Items Per Page to 150 Items") {
-			Testray.changeItemsPerPage();
+		task ("Change Items Per Page") {
+			Testray.changePagination(valuePagination = "150");
 		}
 
 		task ("Delete Categories and asserts that it has been deleted") {
-			TestrayManage.delete(valueName = "Environments_4 Category");
+			TestrayManage.deleteProject(valueName = "Environments_4 Category");
 
 			TestrayManage.assertNameNotPresent(name = "Environments_4 Category");
 		}
@@ -170,8 +170,8 @@ definition {
 			TestrayManage.addNewCategory(Category = "Environments_6 Category");
 		}
 
-		task ("Change Items Per Page to 150 Items") {
-			Testray.changeItemsPerPage();
+		task ("Change Items Per Page") {
+			Testray.changePagination(valuePagination = "150");
 		}
 
 		task ("Edit Categories and asserts that it has been Edited") {
@@ -219,8 +219,8 @@ definition {
 			TestrayManage.assertName(name = "Environments_8 Category A");
 		}
 
-		task ("Change Items Per Page to 150 Items") {
-			Testray.changeItemsPerPage();
+		task ("Change Items Per Page") {
+			Testray.changePagination(valuePagination = "150");
 		}
 
 		task ("Edit Options and asserts that it has changing the Category") {
@@ -260,7 +260,7 @@ definition {
 
 			TestrayManage.selectOptionsManage(itemvalue = "Options");
 
-			TestrayManage.editOptions(
+			TestrayManage.addNewOptions(
 				Options = "Environments_7 Option",
 				Category = "Environments_7 Category");
 

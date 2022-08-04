@@ -58,12 +58,6 @@ definition {
 			locator1 = "Testray#ITEMS_PER_PAGE_SELECT");
 	}
 
-	macro changeItemsPerPageInProjects {
-		Click(locator1 = "Testray#ITEMS_PER_PAGE_BUTTON_IN_PROJECTS");
-
-		Click(locator1 = "Testray#ITEMS_PER_PAGE_BUTTON_DROPDOWN");
-	}
-
 	macro clickOnModalNumber {
 		Click(
 			key_pageDirection = "${pageNumber}",

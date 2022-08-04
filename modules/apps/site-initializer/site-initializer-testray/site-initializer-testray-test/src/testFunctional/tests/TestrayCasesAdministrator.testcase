@@ -12,18 +12,18 @@ definition {
 
 		User.firstLoginPG();
 
-		Testray.createTestraySite(siteName = "Testray 2");
+		// Testray.createTestraySite(siteName = "Testray 2");
 	}
 
-	tearDown {
-		var testPortalInstance = PropsUtil.get("test.portal.instance");
+	// tearDown {
+	// 	var testPortalInstance = PropsUtil.get("test.portal.instance");
 
-		Testray.tearDownCP();
+	// 	Testray.tearDownCP();
 
-		if ("${testPortalInstance}" == "true") {
-			PortalInstances.tearDownCP();
-		}
-	}
+	// 	if ("${testPortalInstance}" == "true") {
+	// 		PortalInstances.tearDownCP();
+	// 	}
+	// }
 
 	@description = "This is a test for LPS-156790 - Verify if as an Administrator I am able to add Cases without Subcomponents"
 	@ignore = "Test Stub"
@@ -35,51 +35,55 @@ definition {
 		}
 
 		task ("Setup Add project") {
-			Testray.createProjects(
+			Testray.gotoAddProject();
+
+			Testray.typeProjectsField(
 				projectName = "Cases_1 Project",
 				description = "Cases_1 Description");
 		}
 
-		task ("Change Items Per Page to 150 Items") {
-			Testray.changeItemsPerPageInProjects();
+		task ("Change Items Per Page") {
+			Testray.changePaginationInModal(valuePagination = "150");
 		}
 
 		task ("Go to Project") {
-		Testray.goToProjectPage(projectName = "Cases_1 Project");
+			Testray.goToProjectPage(projectName = "Cases_1 Project");
 		}
 
 		task ("Navigate the tab and go to Cases") {
-		Testray.projectTabNavigator(navTabName = "Cases");
+			Testray.projectTabNavigator(navTabName = "Cases");
 		}
 
 		task ("Add Cases") {
-		TestrayCases.addCases(
-			caseName = "Cases_1 Case",
-			Priority = "5",
-			CaseTypeId = "Automated Functional Test",
-			ComponentId = "Workflow",
-			Duration = "60",
-			Description = "Cases_1 case Description",
-			Steps = "Auto Test Steps");
+			Testray.gotoAddProject();
+
+			TestrayCases.typeCasesField(
+				caseName = "Cases_1 Case",
+				Priority = "5",
+				CaseTypeId = "Automated Functional Test",
+				ComponentId = "Workflow",
+				Duration = "60",
+				Description = "Cases_1 case Description",
+				Steps = "Auto Test Steps");
 		}
 
 		task ("assert if it was created the Cases") {
-		Testray.assertProjectName(key_name = "Cases_1 Case");
+			Testray.assertProjectName(key_name = "Cases_1 Case");
 		}
 
 		task ("Go to Project Page") {
-		Testray.goToProjectPage(projectName = "Cases_1 Case");
+			Testray.goToProjectPage(projectName = "Cases_1 Case");
 		}
 
 		task ("assert if it was created the Cases with details") {
-		TestrayCases.assertCaseDetails(
-			Name = "Cases_1 Case",
-			Priority = "5",
-			CaseTypeId = "Automated Functional Test",
-			MainComponent = "Workflow",
-			Duration = "60",
-			Description = "Cases_1 case Description",
-			Steps = "Auto Test Steps");
+			TestrayCases.viewCaseDetails(
+				Name = "Cases_1 Case",
+				Priority = "5",
+				CaseTypeId = "Automated Functional Test",
+				MainComponent = "Workflow",
+				Duration = "60",
+				Description = "Cases_1 case Description",
+				Steps = "Auto Test Steps");
 		}
 
 	}

@@ -35,31 +35,37 @@ definition {
 		}
 
 		task ("Setup Add project") {
-			Testray.createProjects(
+			Testray.gotoAddProject();
+
+			Testray.typeProjectsField(
 				projectName = "Builds_1 Project",
 				description = "Builds_1 Description");
 
 			Testray.goToProjectPage(projectName = "Builds_1 Project");
 
-			TestrayRoutines.createRoutineTestray(key_name = "Build_1 Routine");
+			Testray.gotoAddProject();
+
+			TestrayRoutines.typeRoutineField(key_name = "Build_1 Routine");
 		}
 
-		task ("Go to Home Page and Change Items Per Page to 150 Items") {
+		task ("Go to Home Page and Change Items Per Page") {
 			TestrayLayout.clickResultsOnSidebar();
 
-			Testray.changeItemsPerPageInProjects();
+			Testray.changePaginationInModal(valuePagination = "150");
 		}
 
 		task ("Go to Project") {
-		Testray.goToProjectPage(projectName = "Liferay Portal 7.4");
+			Testray.goToProjectPage(projectName = "Liferay Portal 7.4");
 		}
 
 		task ("Go to Routines") {
-		TestrayRoutines.goToRoutine(routineName = "EE Package Tester");
+			TestrayRoutines.goToRoutine(routineName = "EE Package Tester");
 		}
 
 		task ("Add Build") {
-		TestrayBuild.addBuild(
+			Testray.gotoAddProject();
+
+			TestrayBuild.typeBuildField(
 			fieldName = "Builds_1 Build",
 			routine = "EE Package Tester",
 			productVersion = "7.4.x",
@@ -68,15 +74,15 @@ definition {
 		}
 
 		task ("assert if it was created the Build") {
-		Testray.assertProjectName(key_name = "Builds_1 Build");
+			Testray.assertProjectName(key_name = "Builds_1 Build");
 		}
 
 		task ("Go to Build") {
-		Testray.goToProjectPage(projectName = "Builds_1 Build");
+			Testray.goToProjectPage(projectName = "Builds_1 Build");
 		}
 
 		task ("assert if it was created the Build with details") {
-		TestrayBuild.assertBuildDetails(
+			TestrayBuild.viewBuildDetails(
 			productVersion = "7.4.x",
 			Description = "Builds_1 Build Description",
 			gitHash = "12345");
@@ -112,19 +118,25 @@ definition {
 		}
 
 		task ("Setup Add Build") {
-			Testray.createProjects(
+			Testray.gotoAddProject();
+
+			Testray.typeProjectsField(
 				projectName = "Builds_3 Project",
 				description = "Builds_3 Description");
 
-			Testray.changeItemsPerPageInProjects();
+			Testray.changePaginationInModal();
 
 			Testray.goToProjectPage(projectName = "Builds_3 Project");
 
-			TestrayRoutines.createRoutineTestray(key_name = "Build_3 Routine");
+			Testray.gotoAddProject();
+
+			TestrayRoutines.typeRoutineField(key_name = "Build_3 Routine");
 
 			TestrayRoutines.goToRoutine(routineName = "Build_3 Routine");
 
-			TestrayBuild.addBuild(
+			Testray.gotoAddProject();
+
+			TestrayBuild.typeBuildField(
 			fieldName = "Builds_3 Build",
 			routine = "Builds_3 Routine",
 			productVersion = "1.x",
@@ -134,22 +146,24 @@ definition {
 			Testray.assertProjectName(key_name = "Builds_3 Build");
 		}
 
-		task ("Go to Home Page and Change Items Per Page to 150 Items") {
+		task ("Go to Home Page and Change Items Per Page") {
 			TestrayLayout.clickResultsOnSidebar();
 
-			Testray.changeItemsPerPageInProjects();
+			Testray.changePaginationInModal(valuePagination = "150");
 		}
 
 		task ("Go to Project") {
-		Testray.goToProjectPage(projectName = "Liferay Portal 7.4");
+			Testray.goToProjectPage(projectName = "Liferay Portal 7.4");
 		}
 
 		task ("Go to Routines") {
-		TestrayRoutines.goToRoutine(routineName = "EE Package Tester");
+			TestrayRoutines.goToRoutine(routineName = "EE Package Tester");
 		}
 
 		task ("Add Build") {
-		TestrayBuild.addBuild(
+			Testray.gotoAddProject();
+
+			TestrayBuild.typeBuildField(
 			fieldName = "Builds_3 Build",
 			routine = "EE Package Tester",
 			productVersion = "7.4.x",
@@ -158,7 +172,7 @@ definition {
 		}
 
 		task ("Delete new case type and asserts that it has been deleted") {
-			TestrayManage.delete(valueName = "Builds_3 Build");
+			TestrayManage.deleteProject(valueName = "Builds_3 Build");
 
 			TestrayManage.assertNameNotPresent(name = "Builds_3 Build");
 		}
@@ -184,59 +198,67 @@ definition {
 		}
 
 		task ("Setup Add Build") {
-			Testray.createProjects(
+			Testray.gotoAddProject();
+
+			Testray.typeProjectsField(
 				projectName = "Builds_4 Project",
 				description = "Builds_4 Description");
 
-			Testray.changeItemsPerPageInProjects();
+			Testray.changePaginationInModal(valuePagination = "150");
 
 			Testray.goToProjectPage(projectName = "Builds_4 Project");
 
-			TestrayRoutines.createRoutineTestray(key_name = "Build_4 Routine");
+			Testray.gotoAddProject();
+
+			TestrayRoutines.typeRoutineField(key_name = "Build_4 Routine");
 
 			TestrayRoutines.goToRoutine(routineName = "Build_4 Routine");
 
-			TestrayBuild.addBuild(
-			fieldName = "Builds_3 Build",
-			routine = "Builds_3 Routine",
-			productVersion = "1.x",
-			gitHash = "12345",
-			Description = "Builds_3 Build Description");
+			Testray.gotoAddProject();
+
+			TestrayBuild.typeBuildField(
+				fieldName = "Builds_3 Build",
+				routine = "Builds_3 Routine",
+				productVersion = "1.x",
+				gitHash = "12345",
+				Description = "Builds_3 Build Description");
 
 			Testray.assertProjectName(key_name = "Builds_3 Build");
 		}
 
-		task ("Go to Home Page and Change Items Per Page to 150 Items") {
+		task ("Go to Home Page and Change Items Per Page") {
 			TestrayLayout.clickResultsOnSidebar();
 
-			Testray.changeItemsPerPageInProjects();
+			Testray.changePaginationInModal(valuePagination = "150");
 		}
 
 		task ("Go to Project") {
-		Testray.goToProjectPage(projectName = "Liferay Portal 7.4");
+			Testray.goToProjectPage(projectName = "Liferay Portal 7.4");
 		}
 
 		task ("Go to Routines") {
-		TestrayRoutines.goToRoutine(routineName = "EE Package Tester");
+			TestrayRoutines.goToRoutine(routineName = "EE Package Tester");
 		}
 
 		task ("Add Build") {
-		TestrayBuild.addBuild(
-			fieldName = "Builds_4 Build",
-			routine = "EE Package Tester",
-			productVersion = "7.4.x",
-			gitHash = "12345",
-			Description = "Builds_4 Build Description");
+			Testray.gotoAddProject();
+
+			TestrayBuild.typeBuildField(
+				fieldName = "Builds_4 Build",
+				routine = "EE Package Tester",
+				productVersion = "7.4.x",
+				gitHash = "12345",
+				Description = "Builds_4 Build Description");
 		}
 
 		task ("Edit Build and asserts that it has been edited") {
 			TestrayBuild.editBuild(
-			valueName = "Builds_4 Build",
-			fieldName = "Build_4 Build Edited",
-			routine = "EE Package Tester",
-			productVersion = "7.4.x",
-			gitHash = "12345",
-			Description = "Builds_4 Build Description Edited");
+				valueName = "Builds_4 Build",
+				fieldName = "Build_4 Build Edited",
+				routine = "EE Package Tester",
+				productVersion = "7.4.x",
+				gitHash = "12345",
+				Description = "Builds_4 Build Description Edited");
 
 			TestrayManage.assertName(name = "Build_4 Build Edited");
 		}
