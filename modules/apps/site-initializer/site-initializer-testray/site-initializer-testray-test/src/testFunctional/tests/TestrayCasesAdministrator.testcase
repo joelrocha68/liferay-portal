@@ -13,15 +13,16 @@ definition {
 		User.firstLoginPG();
 
 		Testray.createTestraySite(siteName = "Testray 2");
-
 	}
 
 	tearDown {
 		var testPortalInstance = PropsUtil.get("test.portal.instance");
+
 		Testray.tearDownCP();
+
 		if ("${testPortalInstance}" == "true") {
 			PortalInstances.tearDownCP();
-	}
+		}
 	}
 
 	@description = "This is a test for LPS-156790 - Verify if as an Administrator I am able to add Cases without Subcomponents"
@@ -78,7 +79,7 @@ definition {
 				caseTypeId = "Automated Functional Test",
 				description = "Cases_1 case Description",
 				duration = "60",
-				MainComponent = "Workflow",
+				mainComponent = "Workflow",
 				name = "Cases_1 Case",
 				priority = "5",
 				steps = "Auto Test Steps");
