@@ -12,21 +12,22 @@ definition {
 
 		User.firstLoginPG();
 
-		//Testray.createTestraySite(siteName = "Testray 2");
-		//Refresh();
+		Testray.createTestraySite(siteName = "Testray 2");
+		
+		Refresh();
 
 	}
 
 	tearDown {
 
-		//var testPortalInstance = PropsUtil.get("test.portal.instance");
+		var testPortalInstance = PropsUtil.get("test.portal.instance");
 
 		Testray.deleteProject();
 
-		//Testray.tearDownCP();
-		//if ("${testPortalInstance}" == "true") {
-		//	PortalInstances.tearDownCP();
-		//}
+		Testray.tearDownCP();
+		if ("${testPortalInstance}" == "true") {
+			PortalInstances.tearDownCP();
+		}
 
 	}
 
