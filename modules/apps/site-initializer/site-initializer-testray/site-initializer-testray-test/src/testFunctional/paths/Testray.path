@@ -12,7 +12,7 @@
 <tbody>
 <tr>
 	<td>ITEMS_PER_PAGE_BUTTON</td>
-	<td>xpath=(//div[contains(@class, 'pagination')]//button[contains(@class, 'dropdown') and contains(.,'')])[3]</td>
+	<td>//h5[contains(., '')]//ancestor::div//div[contains(@class, 'pagination')]//button[contains(@class, 'dropdown') and contains(.,'${key_numberItems}')]</td>
 	<td></td>
 </tr>
 <tr>
