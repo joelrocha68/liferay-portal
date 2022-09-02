@@ -146,8 +146,8 @@ definition {
 		TestrayLayout.clickResultsOnSidebar();
 
 		Testray.changePaginationInModal(
-				numberItems = "20",
-				valuePagination = "150");
+			numberItems = "20",
+			valuePagination = "150");
 
 		while (IsElementPresent(key_projectName = "Projects_", locator1 = "Testray#PROJECT_NAME")) {
 			TestrayContextMenu.clickContextMenuProjects(name = "Projects_");
@@ -164,8 +164,8 @@ definition {
 		TestrayLayout.clickResultsOnSidebar();
 
 		Testray.changePaginationInModal(
-				numberItems = "20",
-				valuePagination = "150");
+			numberItems = "20",
+			valuePagination = "150");
 
 		TestrayContextMenu.clickContextMenuProjects(name = "${nameProject}");
 
