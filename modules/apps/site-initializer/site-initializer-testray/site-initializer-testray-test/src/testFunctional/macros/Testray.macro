@@ -165,7 +165,7 @@ definition {
 
 		LexiconCard.clickCard(card = "Liferay Site Initializer Testray");
 
-		SelectFrame(
+		SelectFrame.selectFrameNoLoading(
 			key_title = "Add Site",
 			locator1 = "IFrame#MODAL_ANY");
 

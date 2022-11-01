@@ -1,6 +1,7 @@
 definition {
 
-    macro goToCaseResults{
-        TestrayRoutines.goToRoutine(routineName = "${caseResultsName}");
-    }
+	macro goToCaseResults {
+		TestrayRoutines.goToRoutine(routineName = "${caseResultsName}");
+	}
+
 }

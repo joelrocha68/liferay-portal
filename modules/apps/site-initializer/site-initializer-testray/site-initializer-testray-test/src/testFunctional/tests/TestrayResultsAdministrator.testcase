@@ -4,7 +4,7 @@ definition {
 	property custom.properties = "feature.flag.LPS-163118=true";
 	property osgi.modules.includes = "site-initializer-testray";
 	property portal.release = "false";
-	property portal.upstream = "true";
+	property portal.upstream = "joel";
 	property release.feature.flags.disable.DISABLE_PRIVATE_LAYOUTS = "true";
 	property testray.main.component.name = "Site Initializer Testray";
 
@@ -14,9 +14,9 @@ definition {
 
 			User.firstLoginPG();
 
-			// Testray.createTestraySite(siteName = "Testray 2");
+			Testray.createTestraySite(siteName = "Testray 2");
 
-			// Refresh();
+			Refresh();
 		}
 
 		task ("Go to Testray, Create Project and change pagination") {
@@ -27,17 +27,17 @@ definition {
 				key_name = "Projects_1 Project");
 		}
 
-        task ("Go to Case Types and add a new case type") {
+		task ("Go to Case Types and add a new case type") {
 			TestrayLayout.clickManageOnSidebar();
 
 			TestrayManage.selectOptionsManage(itemValue = "Case Types");
 
 			TestrayManage.createNewCaseTypes(caseName = "Case_Type");
 
-            TestrayManage.closeModalInOptions();
+			TestrayManage.closeModalInOptions();
 		}
 
-        task ("Change pagination and create Team") {
+		task ("Change pagination and create Team") {
 			Testray.changePagination(
 				numberItems = "20",
 				valuePagination = "150");
@@ -47,7 +47,7 @@ definition {
 				nameOptions = "Projects_1 Project",
 				version = "Teams_1 Team");
 
-            TestrayManage.closeModalInOptions();
+			TestrayManage.closeModalInOptions();
 		}
 
 		task ("Go to component and Add a new Component") {
@@ -57,7 +57,7 @@ definition {
 
 			Testray.addNewComponent(componentName = "Components_1 Project");
 
-            TestrayManage.closeModalInOptions();
+			TestrayManage.closeModalInOptions();
 		}
 
 		task ("Go to project page and add a new routine") {
@@ -66,8 +66,8 @@ definition {
 			TestrayRoutines.createRoutine(key_name = "Routines_1 Routine");
 		}
 
-        task ("Go to tab cases and Add a new Case") {
-            Testray.projectTabNavigator(navTabName = "Cases");
+		task ("Go to tab cases and Add a new Case") {
+			Testray.projectTabNavigator(navTabName = "Cases");
 
 			TestrayCases.typeCasesField(
 				caseName = "Cases_1 Case",
@@ -80,7 +80,7 @@ definition {
 		}
 
 		task ("Go to Routine and Add Environments Factors") {
-            Testray.projectTabNavigator(navTabName = "Routines");
+			Testray.projectTabNavigator(navTabName = "Routines");
 
 			TestrayContextMenu.clickContextMenuProjects(name = "Routines_1 Routine");
 
@@ -94,12 +94,12 @@ definition {
 				listOption1 = "Chrome x");
 		}
 
-        task ("Go to routine and add a new build") {
+		task ("Go to routine and add a new build") {
 			TestrayRoutines.goToRoutine(routineName = "Routines_1 Routine");
 
 			TestrayBuild.createBuild(
 				addVersion = "1.2",
-                caseName = "Cases_1 Case",
+				caseName = "Cases_1 Case",
 				description = "Builds_1 Project Description",
 				dropdownItem = "New Build",
 				fieldName = "Builds_1 Project",
@@ -124,36 +124,12 @@ definition {
 
 		Testray.deleteAllProjects();
 
-        TestrayManage.deleteAllCasesTypes();
+		TestrayManage.deleteAllCasesTypes();
 
-		// Testray.tearDownCP();
+		Testray.tearDownCP();
 
-		// if ("${testPortalInstance}" == "true") {
-		// 	PortalInstances.tearDownCP();
-		// }
-	}
-
-	@description = "This is a test for LPS-160690 - Verify if as an Administrator I am able to Delete Results"
-	@priority = "5"
-	test AdminCanDeleteResults {
-		task ("Given that the user add a new case results") {
-			Testray.goToProjectPage(projectName = "Projects_1 Project");
-
-			TestrayRoutines.goToRoutine(routineName = "Routines_1 Routine");
-
-			TestrayBuild.goToBuild(buildName = "Builds_1 Project");
-		}
-
-        task ("When the user goes to delete a case results") {
-			TestrayContextMenu.clickContextMenuProjects(name = "Cases_1 Case");
-
-			TestrayContextMenu.selectItemFromProjectsContextMenu(item = "Delete");
-
-            AssertConfirm(value1 = "Are you sure you want to delete this item?");
-		}
-
-		task ("Then the Case Results should not be displayed anymore") {
-			Testray.assertItemNotPresent(itemName = "Cases_1 Case");
+		if ("${testPortalInstance}" == "true") {
+			PortalInstances.tearDownCP();
 		}
 	}
 
@@ -168,10 +144,12 @@ definition {
 			TestrayBuild.goToBuild(buildName = "Builds_1 Project");
 		}
 
-        task ("When the user goes to delete a case results by kebab") {
+		task ("When the user goes to delete a case results by kebab") {
 			TestrayResults.goToCaseResults(caseResultsName = "Cases_1 Case");
 
 			ObjectAdmin.selectKebabMenuOption(kebabOption = "Delete Case Result");
+
+			AssertConfirm.assertPartialConfirmation(value1 = "Are you sure you want to delete this item?");
 		}
 
 		task ("Then the Case Results should not be displayed anymore") {
@@ -179,73 +157,9 @@ definition {
 		}
 	}
 
-	@description = "This is a test for LPS-160685 - Verify if as an Administrator I am able to Unassign Tests"
-	@priority = "4"
-	test AdminCanUnassignTests  {
-		task ("Given that the user add a new case results") {
-			Testray.goToProjectPage(projectName = "Projects_1 Project");
-
-			TestrayRoutines.goToRoutine(routineName = "Routines_1 Routine");
-
-			TestrayBuild.goToBuild(buildName = "Builds_1 Project");
-		}
-
-        task ("When the user goes to unassign a case results") {
-			TestrayResults.goToCaseResults(caseResultsName = "Cases_1 Case");
-		}
-	}
-
-	@description = "This is a test for LPS-160684 - Verify if as an Administrator I am able to Unassign Tests through the context menu"
-	@priority = "3"
-	test AdminCanUnassignTestsThroughTheContextMenu  {
-		task ("Given that the user add a new case results") {
-			Testray.goToProjectPage(projectName = "Projects_1 Project");
-
-			TestrayRoutines.goToRoutine(routineName = "Routines_1 Routine");
-
-			TestrayBuild.goToBuild(buildName = "Builds_1 Project");
-		}
-
-        task ("When the user goes to unassign tests through context menu a case results") {
-			TestrayResults.goToCaseResults(caseResultsName = "Cases_1 Case");
-		}
-	}
-
-	@description = "This is a test for LPS-160686 - Verify if as an Administrator I am able to Reopen Tests"
-	@priority = "4"
-	test AdminCanReopenTests  {
-		task ("Given that the user add a new case results") {
-			Testray.goToProjectPage(projectName = "Projects_1 Project");
-
-			TestrayRoutines.goToRoutine(routineName = "Routines_1 Routine");
-
-			TestrayBuild.goToBuild(buildName = "Builds_1 Project");
-		}
-
-        task ("When the user goes to reopen tests a case results") {
-			TestrayResults.goToCaseResults(caseResultsName = "Cases_1 Case");
-		}
-	}
-
-	@description = "This is a test for LPS-160687 - Verify if as an Administrator I am able to Quick Edit Tests"
-	@priority = "4"
-	test AdminCanQuickEditTests  {
-		task ("Given that the user add a new case results") {
-			Testray.goToProjectPage(projectName = "Projects_1 Project");
-
-			TestrayRoutines.goToRoutine(routineName = "Routines_1 Routine");
-
-			TestrayBuild.goToBuild(buildName = "Builds_1 Project");
-		}
-
-        task ("When the user goes to edit tests a case results") {
-			TestrayResults.goToCaseResults(caseResultsName = "Cases_1 Case");
-		}
-	}
-
-	@description = "This is a test for LPS-160689 - Verify if as an Administrator I am able to execute Tests and mark them as Failed"
+	@description = "This is a test for LPS-160690 - Verify if as an Administrator I am able to Delete Results"
 	@priority = "5"
-	test AdminCanExecuteTestsAndMarkThemAsFailed  {
+	test AdminCanDeleteResults {
 		task ("Given that the user add a new case results") {
 			Testray.goToProjectPage(projectName = "Projects_1 Project");
 
@@ -254,56 +168,16 @@ definition {
 			TestrayBuild.goToBuild(buildName = "Builds_1 Project");
 		}
 
-        task ("When the user goes to edit tests a case results and mark them as failed") {
-			TestrayResults.goToCaseResults(caseResultsName = "Cases_1 Case");
-		}
-	}
+		task ("When the user goes to delete a case results") {
+			TestrayContextMenu.clickContextMenuProjects(name = "Cases_1 Case");
 
-	@description = "This is a test for LPS-160701 - Verify if as an Administrator I am able to Assign Tests directly to me through the context menu"
-	@priority = "4"
-	test AdminCanAssignTestsDirectlyThroughTheContextMenu  {
-		task ("Given that the user add a new case results") {
-			Testray.goToProjectPage(projectName = "Projects_1 Project");
+			TestrayContextMenu.selectItemFromProjectsContextMenu(item = "Delete");
 
-			TestrayRoutines.goToRoutine(routineName = "Routines_1 Routine");
-
-			TestrayBuild.goToBuild(buildName = "Builds_1 Project");
+			AssertConfirm(value1 = "Are you sure you want to delete this item?");
 		}
 
-        task ("When the user goes to assign a case results") {
-			TestrayResults.goToCaseResults(caseResultsName = "Cases_1 Case");
-		}
-	}
-
-	@description = "This is a test for LPS-160682 - Verify if as an Administrator I am able to view Results grouped by Team"
-	@priority = "3"
-	test AdminCanViewResultsGroupedByTeam  {
-		task ("Given that the user add a new case results") {
-			Testray.goToProjectPage(projectName = "Projects_1 Project");
-
-			TestrayRoutines.goToRoutine(routineName = "Routines_1 Routine");
-
-			TestrayBuild.goToBuild(buildName = "Builds_1 Project");
-		}
-
-        task ("When the user goes to a case results") {
-			TestrayResults.goToCaseResults(caseResultsName = "Cases_1 Case");
-		}
-	}
-
-	@description = "This is a test for LPS-160683 - Verify if as an Administrator I am able to view Results grouped by Component"
-	@priority = "3"
-	test AdminCanViewResultsGroupedByComponent  {
-		task ("Given that the user add a new case results") {
-			Testray.goToProjectPage(projectName = "Projects_1 Project");
-
-			TestrayRoutines.goToRoutine(routineName = "Routines_1 Routine");
-
-			TestrayBuild.goToBuild(buildName = "Builds_1 Project");
-		}
-
-        task ("When the user goes to a case results") {
-			TestrayResults.goToCaseResults(caseResultsName = "Cases_1 Case");
+		task ("Then the Case Results should not be displayed anymore") {
+			Testray.assertItemNotPresent(itemName = "Cases_1 Case");
 		}
 	}
 
