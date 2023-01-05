@@ -13,25 +13,35 @@ definition {
 
 		User.firstLoginPG();
 
-		Testray.addTestraySite();
+		Site.openSitesAdmin();
+
+		TeamExtranet.addSiteTemplateCP(
+			siteName = "Testray 2",
+			siteTemplateName = "Liferay Site Initializer Testray");
 
 		Refresh();
+
+		var projectId = TestrayAPI.createProjectAPI(
+			projectDescription = "Projects_1 Project Description",
+			projectName = "Projects_1 Project");
 	}
 
 	tearDown {
 		var testPortalInstance = PropsUtil.get("test.portal.instance");
 
-		TestrayRoutines.deleteRoutineSetup();
+		TestrayAPI._deleteAllProjects();
 
-		Testray.deleteAllProjects();
+		// TestrayRoutines.deleteRoutineSetup();
 
-		Testray.tearDownCP();
+		// Testray.deleteAllProjects();
 
-		ObjectAdmin.deleteAllCustomObjectsViaAPI();
+		// Testray.tearDownCP();
 
-		if ("${testPortalInstance}" == "true") {
-			PortalInstances.tearDownCP();
-		}
+		// ObjectAdmin.deleteAllCustomObjectsViaAPI();
+
+		// if ("${testPortalInstance}" == "true") {
+		// 	PortalInstances.tearDownCP();
+		// }
 	}
 
 	@description = "This is a test for LPS-160539. Verify if as an Administrator I am able to add a Project"
@@ -40,9 +50,7 @@ definition {
 		task ("Go to Testray and Create Project") {
 			ApplicationsMenu.gotoSite(site = "Testray 2");
 
-			Testray.createProjectTestray(
-				description = "Projects_1 Project Description",
-				key_name = "Projects_1 Project");
+			
 		}
 
 		task ("Change pagination and Assert it the project was created") {
