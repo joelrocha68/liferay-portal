@@ -27,7 +27,7 @@ definition {
 
 			User.firstLoginPG();
 
-			Testray.addTestraySite(siteName = ${testSiteName});
+			// Testray.addTestraySite(siteName = ${testSiteName});
 		}
 
 		task ("create all objects: projects, routine, teams, components, cases, case type, enviroment factors, product version, build, category, options, run and case results") {
@@ -121,37 +121,37 @@ definition {
 		}
 	}
 
-	tearDown {
-		JSONTestrayAPI.deleteObjectViaAPI(
-			object = "productversions",
-			objectName = "1.2");
+	// tearDown {
+	// 	JSONTestrayAPI.deleteObjectViaAPI(
+	// 		object = "productversions",
+	// 		objectName = "1.2");
 
-		JSONTestrayAPI.deleteObjectViaAPI(
-			object = "productversions",
-			objectName = "7.0");
+	// 	JSONTestrayAPI.deleteObjectViaAPI(
+	// 		object = "productversions",
+	// 		objectName = "7.0");
 
-		JSONTestrayAPI.deleteObjectViaAPI(
-			object = "routines",
-			objectName = "Routine 1");
+	// 	JSONTestrayAPI.deleteObjectViaAPI(
+	// 		object = "routines",
+	// 		objectName = "Routine 1");
 
-		JSONTestrayAPI.deleteObjectViaAPI(
-			object = "casetypes",
-			objectName = "Case Type 1");
+	// 	JSONTestrayAPI.deleteObjectViaAPI(
+	// 		object = "casetypes",
+	// 		objectName = "Case Type 1");
 
-		JSONTestrayAPI.deleteObjectViaAPI(
-			object = "factorcategories",
-			objectName = "Category 1");
+	// 	JSONTestrayAPI.deleteObjectViaAPI(
+	// 		object = "factorcategories",
+	// 		objectName = "Category 1");
 
-		JSONTestrayAPI.deleteProject(projectName = ${projectName});
+	// 	JSONTestrayAPI.deleteProject(projectName = ${projectName});
 
-		Testray.testrayApisTearDown();
+	// 	Testray.testrayApisTearDown();
 
-		var testPortalInstance = PropsUtil.get("test.portal.instance");
+	// 	var testPortalInstance = PropsUtil.get("test.portal.instance");
 
-		if (${testPortalInstance} == "true") {
-			PortalInstances.tearDownCP();
-		}
-	}
+	// 	if (${testPortalInstance} == "true") {
+	// 		PortalInstances.tearDownCP();
+	// 	}
+	// }
 
 	@description = "Story ID: LPS-162623 | Test Summary: Verify if as an Administrator I am able to filter the cases Tab in a Run Comparison Result by case name"
 	@priority = 3
@@ -271,6 +271,38 @@ definition {
 		task ("And do not see priority 5 in the table") {
 			AssertElementNotPresent(
 				key_projectName = 5,
+				locator1 = "Testray#ITEM_NAME");
+		}
+	}
+
+	@description = "Story ID: LPS-162623 | Test Summary: Verify if as an Administrator I am able to filter the cases Tab in a Run Comparison Result by priority"
+	@priority = 3
+	test AdminCan {
+		property test.name.skip.portal.instance = "TestrayFiltersCompareRunsAdministrator#AdminCanFilterDetailsTabInRunComparisonResultByPriority";
+
+		task ("Given that the user select two runs for compare runs") {
+			Testray.projectTabNavigator(navTabName = "Runs");
+
+			TestrayContextMenu.clickContextMenuProjects(name = "Run 1");
+
+			TestrayContextMenu.selectItemFromProjectsContextMenu(item = "Select Run A");
+
+			TestrayContextMenu.clickContextMenuProjects(name = "Run 2");
+
+			TestrayContextMenu.selectItemFromProjectsContextMenu(item = "Select Run B");
+		}
+
+		task ("And that the user has two priority different in the table") {
+			TestrayManage.selectOptionsManage(itemValue = "Compare Runs");
+
+			Button.click(button = "Compare Runs");
+
+			Testray.projectTabNavigator(navTabName = "Cases");
+
+			Click(locator1 = "//table[contains(@class,'tr-table-chart')]//td[normalize-space()='B Passed']//following::td[normalize-space()='A Passed']//following::a[normalize-space()='1']");
+
+			AssertElementPresent(
+				key_projectName = "Case 1",
 				locator1 = "Testray#ITEM_NAME");
 		}
 	}
